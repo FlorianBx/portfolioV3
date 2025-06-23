@@ -3,14 +3,13 @@ import Contributions from "@/components/Contributions.vue";
 import { useGithubStore } from '@/stores/github';
 
 const githubStore = useGithubStore()
-
 </script>
 
 <template>
-  <section class="flex gap-32" aria-labelledby="section-title-unique">
-    <h1 id="section-title-unique" class="text-8xl font-bold text-white">D<br />E<br />V</h1>
+  <section class="flex flex-col xl:flex-row gap-32" aria-labelledby="section-title-unique">
+    <h1 id="section-title-unique" class="hidden xl:block text-8xl font-bold text-white">D<br />E<br />V</h1>
     <div class="max-w-4xl mt-12">
-      <div class="grid grid-cols-2 gap-8">
+      <div class="grid lg:grid-cols-2 gap-8">
         <div class="text-white font-sans text-lg leading-relaxed max-w-xl">
           <p>
             Hi I'm <span class="text-xl font-bold">Florian</span> <br /><br />
@@ -39,7 +38,7 @@ const githubStore = useGithubStore()
           </p>
         </div>
         <img
-          class="transform rotate-6 grayscale scale-x-[-1] hover:rotate-0 duration-150 cursor-pointer rounded"
+          class="transform rotate-6 grayscale scale-75 lg:scale-x-[-1] lg:scale-y-[1] hover:rotate-0 duration-150 cursor-pointer rounded"
           src="/public/assets/images/1696890004250.avif"
           width="530"
           height="300"

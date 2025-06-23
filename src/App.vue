@@ -37,78 +37,80 @@ useHead({
 </script>
 
 <template>
-  <div class="p-4 bg-black text-white h-screen">
-    <header class="flex justify-end">
-      <a href="#main" class="skip-link">Skip to main content</a>
-      <nav class="pb-8 flex gap-4">
-        <RouterLink
-          class="cursor-pointer hover:text-emerald-300"
-          to="/"
-          active-class="text-emerald-400"
-          exact-active-class="text-emerald-400"
-        >
-          <HomeIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to the home</span>
-        </RouterLink>
-        <RouterLink
-          class="cursor-pointer hover:text-emerald-300"
-          to="/my-work"
-          active-class="text-emerald-400"
-          exact-active-class="text-emerald-400"
-        >
-          <MyWorkIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to my work</span>
-        </RouterLink>
-        <RouterLink
-          class="cursor-pointer hover:text-emerald-300"
-          to="/blog"
-          active-class="text-emerald-400"
-          exact-active-class="text-emerald-400"
-        >
-          <ArticleIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to the blog</span>
-        </RouterLink>
-        <a
-          class="cursor-pointer hover:text-emerald-300"
-          href="https://www.linkedin.com/in/florianbeaumont"
-          target="_blank"
-        >
-          <LinkedinIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to my Linkedin</span>
-        </a>
-        <a
-          class="cursor-pointer hover:text-emerald-300 m-0.5"
-          href="https://github.com/FlorianBx"
-          target="_blank"
-        >
-          <GithubIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to my Github</span>
-        </a>
-      </nav>
-    </header>
-    <main id="main">
-      <router-view v-slot="{ Component }">
-        <transition name="page" mode="out-in" appear>
-          <KeepAlive>
-            <component :is="Component" />
-          </KeepAlive>
-        </transition>
-      </router-view>
-    </main>
+  <div class="bg-black text-white">
+    <div class="p-4 min-h-screen">
+      <header class="flex justify-end">
+        <a href="#main" class="skip-link">Skip to main content</a>
+        <nav class="pb-8 flex gap-4">
+          <RouterLink
+            class="cursor-pointer hover:text-emerald-300"
+            to="/"
+            active-class="text-emerald-400"
+            exact-active-class="text-emerald-400"
+          >
+            <HomeIcon aria-hidden="true" focusable="false" />
+            <span class="sr-only">to the home</span>
+          </RouterLink>
+          <RouterLink
+            class="cursor-pointer hover:text-emerald-300"
+            to="/my-work"
+            active-class="text-emerald-400"
+            exact-active-class="text-emerald-400"
+          >
+            <MyWorkIcon aria-hidden="true" focusable="false" />
+            <span class="sr-only">to my work</span>
+          </RouterLink>
+          <RouterLink
+            class="cursor-pointer hover:text-emerald-300"
+            to="/blog"
+            active-class="text-emerald-400"
+            exact-active-class="text-emerald-400"
+          >
+            <ArticleIcon aria-hidden="true" focusable="false" />
+            <span class="sr-only">to the blog</span>
+          </RouterLink>
+          <a
+            class="cursor-pointer hover:text-emerald-300"
+            href="https://www.linkedin.com/in/florianbeaumont"
+            target="_blank"
+          >
+            <LinkedinIcon aria-hidden="true" focusable="false" />
+            <span class="sr-only">to my Linkedin</span>
+          </a>
+          <a
+            class="cursor-pointer hover:text-emerald-300 m-0.5"
+            href="https://github.com/FlorianBx"
+            target="_blank"
+          >
+            <GithubIcon aria-hidden="true" focusable="false" />
+            <span class="sr-only">to my Github</span>
+          </a>
+        </nav>
+      </header>
+      <main id="main">
+        <router-view v-slot="{ Component }">
+          <transition name="page" mode="out-in" appear>
+            <KeepAlive>
+              <component :is="Component" />
+            </KeepAlive>
+          </transition>
+        </router-view>
+      </main>
+    </div>
+    <footer
+      aria-label="Footer – author credit"
+      class="relative bottom-4 mt-8 w-full text-center"
+    >
+      <p class="text-xs">
+        <span aria-hidden="true" class="text-stone-300">
+          Made with
+          <span style="color: transparent; text-shadow: 0 0 0 #aaa">❤️</span>
+          by me
+        </span>
+        <span class="sr-only">Made with love by Florian Beaumont</span>
+      </p>
+    </footer>
   </div>
-  <footer
-    aria-label="Footer – author credit"
-    class="fixed bottom-4 w-full text-center"
-  >
-    <p class="text-xs">
-      <span aria-hidden="true" class="text-stone-300">
-        Made with
-        <span style="color: transparent; text-shadow: 0 0 0 #aaa">❤️</span>
-        by me
-      </span>
-      <span class="sr-only">Made with love by Florian Beaumont</span>
-    </p>
-  </footer>
 </template>
 
 <style scoped>
