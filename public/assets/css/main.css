@@ -31,6 +31,8 @@
   --text-4xl--line-height:   2.5rem;
   --text-5xl:         3rem;
   --text-5xl--line-height:   1;
+  --text-8xl:         12rem;
+  /* --text-8xl--line-height:   2.5rem; */
 
   /* font weights */
   --font-weight-normal:    400;

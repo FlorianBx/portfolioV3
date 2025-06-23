@@ -4,6 +4,7 @@ import ArticleIcon from "@/components/ArticleIcon.vue";
 import HomeIcon from "@/components/HomeIcon.vue";
 import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
+import MyWorkIcon from "@/components/MyWorkIcon.vue";
 
 useHead({
   title:
@@ -37,7 +38,7 @@ useHead({
 
 <template>
   <div class="p-4 bg-black text-white h-screen">
-    <header>
+    <header class="flex justify-end">
       <a href="#main" class="skip-link">Skip to main content</a>
       <nav class="pb-8 flex gap-4">
         <RouterLink
@@ -57,6 +58,15 @@ useHead({
         >
           <ArticleIcon aria-hidden="true" focusable="false" />
           <span class="sr-only">to the blog</span>
+        </RouterLink>
+        <RouterLink
+          class="cursor-pointer"
+          to="/my-work"
+          active-class="text-emerald-400"
+          exact-active-class="text-emerald-400"
+        >
+          <MyWorkIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to my work</span>
         </RouterLink>
         <a
           class="cursor-pointer"
@@ -85,7 +95,11 @@ useHead({
     class="fixed bottom-4 w-full text-center"
   >
     <p class="text-xs">
-      <span aria-hidden="true" class="text-stone-300">Made with ❤️ by me</span>
+      <span aria-hidden="true" class="text-stone-300">
+        Made with
+        <span style="color: transparent; text-shadow: 0 0 0 #aaa">❤️</span>
+        by me
+      </span>
       <span class="sr-only">Made with love by Florian Beaumont</span>
     </p>
   </footer>

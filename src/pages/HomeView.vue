@@ -1,3 +1,41 @@
 <template>
-<h1 class="text-8xl font-bold text-white">JSPAS</h1>
+  <section class="flex gap-32">
+    <h1 class="text-8xl font-bold text-white">D<br />E<br />V</h1>
+    <div class="max-w-4xl mt-12">
+      <div class="grid grid-cols-2 gap-8">
+        <div class="text-white font-sans text-lg leading-relaxed max-w-xl">
+          <p>
+            <span class="text-4xl">Hi</span> I'm Florian<br /><br />
+            I'm a specialized
+            <strong class="font-semibold text-white">Frontend Developer</strong>
+            working mostly with
+            <span class="text-emerald-400 font-semibold text-4xl">VUE.JS</span
+            >.<br /><br />
+            I spend my time exploring
+            <span class="text-sky-400 text-xl font-bold">OPEN SOURCE</span>
+            🌱, building fun stuff, and always learning something new.<br /><br />
+            I also like experimenting with ideas — building tools and libraries
+            across different languages, just to see where they lead.
+            <br /><br />
+            If you want to chat, come say hi at a <br />
+            <span class="text-white text-2xl font-bold">Vuejs Paris</span>
+            meetup or
+            <a
+              href="https://cal.com/fbeaumont/30min"
+              target="_blank"
+              class="text-blue-400"
+              >book a call</a
+            >.
+          </p>
+        </div>
+        <img
+          class="transform rotate-6 grayscale scale-x-[-1] hover:rotate-0 duration-150 cursor-pointer rounded"
+          src="https://media.licdn.com/dms/image/v2/D4E03AQEWzb2EhoGTyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1696890004250?e=1756339200&v=beta&t=tnSYjGlpbiDHtJ9he9zpiHgpOZhSEekzh822A3nXlLM"
+          width="300"
+          height="600"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
 </template>
