@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
+import ArticleIcon from "@/components/ArticleIcon.vue";
+import HomeIcon from "@/components/HomeIcon.vue";
+import GithubIcon from "@/components/GithubIcon.vue";
+import LinkedinIcon from "@/components/LinkedinIcon.vue";
 
 useHead({
   title:
@@ -35,15 +39,53 @@ useHead({
   <div class="p-4 bg-black text-white h-screen">
     <header>
       <nav class="pb-8 flex gap-4">
-        <RouterLink class="cursor-pointer" to="/">Home</RouterLink>
-        <RouterLink class="cursor-pointer" to="/blog">Blog</RouterLink>
+        <RouterLink
+          class="cursor-pointer hover:text-emerald-300"
+          to="/"
+          active-class="text-emerald-400"
+          exact-active-class="text-emerald-400"
+        >
+          <HomeIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to the home</span>
+        </RouterLink>
+        <RouterLink
+          class="cursor-pointer"
+          to="/blog"
+          active-class="text-emerald-400"
+          exact-active-class="text-emerald-400"
+        >
+          <ArticleIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to the blog</span>
+        </RouterLink>
+        <a
+          class="cursor-pointer"
+          href="https://github.com/FlorianBx"
+          target="_blank"
+        >
+          <GithubIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to my Github</span>
+        </a>
+        <a
+          class="cursor-pointer"
+          href="https://www.linkedin.com/in/florianbeaumont"
+          target="_blank"
+        >
+          <LinkedinIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to my Linkedin</span>
+        </a>
       </nav>
     </header>
     <main>
       <router-view />
     </main>
   </div>
-    <footer class="fixed bottom-0 text-center w-full text-white">
-      <p>Made with ❤️ by me</p>
-    </footer>
+  <footer
+    aria-label="Footer – author credit"
+    class="fixed bottom-4 w-full text-center"
+  >
+    <p class="text-xs">
+      <span aria-hidden="true" class="text-stone-300">Made with ❤️ by me</span>
+      <span class="sr-only">Made with love by Florian Beaumont</span>
+    </p>
+  </footer>
 </template>
