@@ -1,18 +1,29 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueDevTools from "vite-plugin-vue-devtools";
+import Pages from "vite-plugin-pages";
+import Sitemap from "vite-plugin-pages-sitemap";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    Pages({
+      dirs: "src/pages",
+      extensions: ["vue"],
+      onRoutesGenerated: (routes) =>
+        Sitemap({
+          routes,
+          hostname: "https://dapper-nasturtium-49f901.netlify.app/",
+        }),
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-})
+});
