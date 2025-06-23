@@ -14,6 +14,7 @@ export const createApp = ViteSSG(
 
     const github = useGithubStore(pinia);
 
+    console.log(import.meta.env.SSR);
     if (import.meta.env.SSR || import.meta.env.DEV) {
       await github.fetchContributions();
       await github.fetchRepos();
