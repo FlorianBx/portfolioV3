@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Contributions from "@/components/Contributions.vue"
+</script>
+
 <template>
   <section class="flex gap-32">
     <h1 class="text-8xl font-bold text-white">D<br />E<br />V</h1>
@@ -5,9 +9,9 @@
       <div class="grid grid-cols-2 gap-8">
         <div class="text-white font-sans text-lg leading-relaxed max-w-xl">
           <p>
-            <span class="text-4xl">Hi</span> I'm Florian<br /><br />
+            Hi I'm <span class="text-xl font-bold">Florian</span> <br /><br />
             I'm a specialized
-            <strong class="font-semibold text-white">Frontend Developer</strong>
+            <strong class="font-semibold text-white text-xl">Frontend Developer</strong>
             working mostly with
             <span class="text-emerald-400 font-semibold text-4xl">VUE.JS</span
             >.<br /><br />
@@ -31,11 +35,12 @@
         <img
           class="transform rotate-6 grayscale scale-x-[-1] hover:rotate-0 duration-150 cursor-pointer rounded"
           src="/public/assets/images/1696890004250.avif"
-          width="300"
+          width="530"
           height="300"
           alt=""
         />
       </div>
+    <Contributions class="mt-24" />
     </div>
   </section>
 </template>
