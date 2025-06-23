@@ -41,7 +41,7 @@ function getHeatmapDates() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const days: string[] = [];
-  for (let i = 374; i >= 0; i--) {
+  for (let i = 324; i >= 0; i--) {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     days.push(d.toISOString().slice(0, 10));
@@ -93,7 +93,7 @@ const weeks = computed(() => {
           </div>
         </div>
       </div>
-      <p class="flex justify-end gap-2 mt-4 text-xs text-gray-500">
+      <p class="flex justify-end gap-2 mt-4 mr-1 text-xs bg-black text-gray-300">
         Less
         <span
           class="inline-block w-4 h-4 bg-emerald-900 align-middle rounded"
