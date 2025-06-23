@@ -38,6 +38,7 @@ useHead({
 <template>
   <div class="p-4 bg-black text-white h-screen">
     <header>
+      <a href="#main" class="skip-link">Skip to main content</a>
       <nav class="pb-8 flex gap-4">
         <RouterLink
           class="cursor-pointer hover:text-emerald-300"
@@ -75,7 +76,7 @@ useHead({
         </a>
       </nav>
     </header>
-    <main>
+    <main id="main">
       <router-view />
     </main>
   </div>
@@ -89,3 +90,22 @@ useHead({
     </p>
   </footer>
 </template>
+
+<style scoped>
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 0;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+</style>
