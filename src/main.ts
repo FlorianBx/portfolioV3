@@ -5,28 +5,26 @@ import { routes } from "./routes";
 import { useGithubStore } from "@/stores/github";
 import "../public/assets/css/main.css";
 
+
 export const createApp = ViteSSG(
   App,
   { routes },
-  async ({ app, initialState, onSSRAppRendered }) => {
+  async ({ app, initialState, onSSRAppRendered, isClient }) => {
     const pinia = createPinia();
     app.use(pinia);
 
-    const github = useGithubStore(pinia);
+    if (isClient && initialState.pinia) {
+      pinia.state.value = initialState.pinia;
+    }
 
-    console.log(import.meta.env.SSR);
-    if (import.meta.env.SSR || import.meta.env.DEV) {
+    const github = useGithubStore();
+
+    if (import.meta.env.SSR) {
       await github.fetchContributions();
       await github.fetchRepos();
-      if (import.meta.env.SSR) {
-        onSSRAppRendered(() => {
-          initialState.pinia = pinia.state.value;
-        });
-      }
-    } else {
-      if (initialState.pinia) {
-        pinia.state.value = initialState.pinia;
-      }
+      onSSRAppRendered(() => {
+        initialState.pinia = pinia.state.value;
+      });
     }
   },
 );
