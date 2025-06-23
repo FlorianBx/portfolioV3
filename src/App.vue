@@ -87,9 +87,13 @@ useHead({
       </nav>
     </header>
     <main id="main">
-      <Transition name="page" mode="out-in" appear>
-        <router-view />
-      </Transition>
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in" appear>
+          <KeepAlive>
+            <component :is="Component" />
+          </KeepAlive>
+        </transition>
+      </router-view>
     </main>
   </div>
   <footer
@@ -127,7 +131,7 @@ useHead({
 
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.4s ease;
+  transition: all 0.15s ease-in-out;
 }
 
 .page-enter-from {
