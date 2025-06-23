@@ -19,7 +19,7 @@ export const createApp = ViteSSG(
 
     const github = useGithubStore();
 
-    if (import.meta.env.SSR) {
+    if (import.meta.env.SSR || import.meta.env.DEV) {
       await github.fetchContributions();
       await github.fetchRepos();
       onSSRAppRendered(() => {

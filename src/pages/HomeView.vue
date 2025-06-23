@@ -7,8 +7,8 @@ const githubStore = useGithubStore()
 </script>
 
 <template>
-  <section class="flex gap-32">
-    <h1 class="text-8xl font-bold text-white">D<br />E<br />V</h1>
+  <section class="flex gap-32" aria-labelledby="section-title-unique">
+    <h1 id="section-title-unique" class="text-8xl font-bold text-white">D<br />E<br />V</h1>
     <div class="max-w-4xl mt-12">
       <div class="grid grid-cols-2 gap-8">
         <div class="text-white font-sans text-lg leading-relaxed max-w-xl">
