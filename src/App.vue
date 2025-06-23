@@ -33,8 +33,8 @@ useHead({
 
 <template>
   <div class="p-4 bg-black text-white h-screen">
-    <header class="pb-8">
-      <nav class="flex gap-4">
+    <header>
+      <nav class="pb-8 flex gap-4">
         <RouterLink class="cursor-pointer" to="/">Home</RouterLink>
         <RouterLink class="cursor-pointer" to="/blog">Blog</RouterLink>
       </nav>
@@ -43,4 +43,7 @@ useHead({
       <router-view />
     </main>
   </div>
+    <footer class="fixed bottom-0 text-center w-full text-white">
+      <p>Made with ❤️ by me</p>
+    </footer>
 </template>
