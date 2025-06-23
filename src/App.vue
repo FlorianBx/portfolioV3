@@ -37,8 +37,8 @@ useHead({
 </script>
 
 <template>
-  <div class="bg-black text-white">
-    <div class="p-4 min-h-screen">
+  <div class="bg-black text-white min-h-screen">
+    <div class="p-4 min-h-(--screen-minus-nav)">
       <header class="flex justify-end">
         <a href="#main" class="skip-link">Skip to main content</a>
         <nav class="pb-8 flex gap-4">

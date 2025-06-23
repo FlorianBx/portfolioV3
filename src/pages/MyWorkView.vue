@@ -6,7 +6,7 @@ const github = useGithubStore();
 
 <template>
   <section class="flex gap-32" aria-labelledby="section-title-unique">
-    <h1 id="section-title-unique" class="text-8xl font-bold text-white">P<br />R<br />O</h1>
+    <h1 id="section-title-unique" class="hidden xl:block text-8xl font-bold text-white">P<br />R<br />O</h1>
     <div class="max-w-4xl mt-12">
       <div v-if="github.loadingRepos">Chargement…</div>
       <div v-else-if="github.errorRepos">Erreur : {{ github.errorRepos }}</div>
