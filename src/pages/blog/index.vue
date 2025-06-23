@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { usePosts } from '@/composables/usePosts'
 const posts = usePosts()
+
+function formatDate(date: string): string {
+  return date?.toString().slice(0, 15) ?? ''
+}
 </script>
 
 <template>
   <div>
-    <h1>Blog</h1>
-    <ul>
-      <li v-for="post in posts" :key="post.slug">
+    <h1 class="pb-8 text-8xl font-bold">Blog</h1>
+    <ul class="px-6">
+      <li class="list-disc py-2" v-for="post in posts" :key="post.slug">
         <router-link :to="`/blog/${post.slug}`">
-          {{ post.frontmatter.title }} • {{ post.frontmatter.date }}
+          {{ post.frontmatter.title }} • {{ formatDate(post.frontmatter.date) }}
         </router-link>
       </li>
     </ul>
