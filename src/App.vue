@@ -87,7 +87,9 @@ useHead({
       </nav>
     </header>
     <main id="main">
-      <router-view />
+      <Transition name="page" mode="out-in" appear>
+        <router-view />
+      </Transition>
     </main>
   </div>
   <footer
@@ -121,5 +123,28 @@ useHead({
 
 .skip-link:focus {
   top: 0;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.page-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 </style>
