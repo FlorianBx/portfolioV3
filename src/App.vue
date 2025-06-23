@@ -64,7 +64,6 @@ useHead({
             class="cursor-pointer hover:text-emerald-300"
             to="/blog"
             active-class="text-emerald-400"
-            exact-active-class="text-emerald-400"
           >
             <ArticleIcon aria-hidden="true" focusable="false" />
             <span class="sr-only">to the blog</span>

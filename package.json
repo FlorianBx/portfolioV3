@@ -21,7 +21,6 @@
     "markdown-it-toc-done-right": "^4.2.0",
     "pinia": "^3.0.3",
     "tailwindcss": "^4.1.10",
-    "tippy.js": "^6.3.7",
     "vite-plugin-pages": "^0.33.0",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vue": "^3.5.13"

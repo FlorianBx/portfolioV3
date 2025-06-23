@@ -39,7 +39,7 @@ const githubStore = useGithubStore()
         </div>
         <img
           class="transform rotate-6 grayscale scale-75 lg:scale-x-[-1] lg:scale-y-[1] hover:rotate-0 duration-150 cursor-pointer rounded"
-          src="/public/assets/images/1696890004250.avif"
+          src="@/assets/images/1696890004250.avif"
           width="530"
           height="300"
           alt=""

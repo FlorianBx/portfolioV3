@@ -3,7 +3,7 @@ import App from "./App.vue";
 import { createPinia } from "pinia";
 import { routes } from "./routes";
 import { useGithubStore } from "@/stores/github";
-import "../public/assets/css/main.css";
+import "@/assets/css/main.css";
 
 
 export const createApp = ViteSSG(
