@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
-import type { ContributionWeek } from '@/types/github'
+import { computed } from "vue";
+import type { ContributionWeek } from "@/types/github";
 
 const props = defineProps<{
-  contributions: ContributionWeek[]
-}>()
+  contributions: ContributionWeek[];
+}>();
 
 interface Contribution {
   date: string;
@@ -12,34 +12,13 @@ interface Contribution {
   level: number;
 }
 
-// const loading = ref(true);
-// const error = ref<string | null>(null);
 const CONTRIB_COLORS = [
   "oklch(37.8% 0.077 168.94)",
   "oklch(50.8% 0.118 165.612)",
   "oklch(69.6% 0.17 162.48)",
   "oklch(76.5% 0.177 163.223)",
   "oklch(84.5% 0.143 164.978)",
-];
-
-// onMounted(async () => {
-//   try {
-//     const res = await fetch(
-//       "https://github-contributions-api.jogruber.de/v4/florianbx",
-//     );
-//     if (!res.ok) throw new Error("Erreur réseau");
-//     const data = await res.json();
-//     if (Array.isArray(data.contributions)) {
-//       contributions.value = data.contributions;
-//     } else {
-//       throw new Error("Aucune donnée de contribution trouvée");
-//     }
-//   } catch (e: any) {
-//     error.value = e.message;
-//   } finally {
-//     loading.value = false;
-//   }
-// });
+] as const;
 
 function getColor(level: number) {
   switch (level) {
@@ -48,9 +27,9 @@ function getColor(level: number) {
     case 1:
       return CONTRIB_COLORS[0];
     case 2:
-      return CONTRIB_COLORS[1]; 
+      return CONTRIB_COLORS[1];
     case 3:
-      return CONTRIB_COLORS[2]; 
+      return CONTRIB_COLORS[2];
     case 4:
       return CONTRIB_COLORS[3];
     default:
@@ -71,7 +50,9 @@ function getHeatmapDates() {
 }
 
 const heatmapDays = computed(() => {
-  const map = Object.fromEntries(props.contributions.map((c: any) => [c.date, c]));
+  const map = Object.fromEntries(
+    props.contributions.map((c: any) => [c.date, c]),
+  );
   return getHeatmapDates().map((date) =>
     map[date] ? map[date] : { date, count: 0, level: 0 },
   );
@@ -88,11 +69,11 @@ const weeks = computed(() => {
 
 <template>
   <div>
-    <h2 class="text-xl text-slate-300 font-semibold mb-2">Contributions in the last year</h2>
-    <!-- <div v-if="loading">Chargement...</div> -->
-    <!-- <div v-else-if="error">Erreur : {{ error }}</div> -->
+    <h2 class="text-xl text-slate-300 font-semibold mb-2">
+      Contributions in the last year
+    </h2>
     <div>
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto" tabindex="-1">
         <div class="flex" style="gap: 3px">
           <div
             v-for="(week, i) in weeks"
