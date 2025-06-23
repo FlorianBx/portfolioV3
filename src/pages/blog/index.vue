@@ -2,6 +2,7 @@
 import { usePosts } from '@/composables/usePosts'
 const posts = usePosts()
 </script>
+
 <template>
   <div>
     <h1>Blog</h1>
