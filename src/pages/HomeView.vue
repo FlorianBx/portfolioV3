@@ -23,16 +23,16 @@
             <a
               href="https://cal.com/fbeaumont/30min"
               target="_blank"
-              class="text-blue-400"
+              class="text-teal-100 text-xl font-medium underline underline-offset-8"
               >book a call</a
             >.
           </p>
         </div>
         <img
           class="transform rotate-6 grayscale scale-x-[-1] hover:rotate-0 duration-150 cursor-pointer rounded"
-          src="https://media.licdn.com/dms/image/v2/D4E03AQEWzb2EhoGTyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1696890004250?e=1756339200&v=beta&t=tnSYjGlpbiDHtJ9he9zpiHgpOZhSEekzh822A3nXlLM"
+          src="/public/assets/images/1696890004250.avif"
           width="300"
-          height="600"
+          height="300"
           alt=""
         />
       </div>
