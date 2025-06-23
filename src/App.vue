@@ -51,16 +51,7 @@ useHead({
           <span class="sr-only">to the home</span>
         </RouterLink>
         <RouterLink
-          class="cursor-pointer"
-          to="/blog"
-          active-class="text-emerald-400"
-          exact-active-class="text-emerald-400"
-        >
-          <ArticleIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to the blog</span>
-        </RouterLink>
-        <RouterLink
-          class="cursor-pointer"
+          class="cursor-pointer hover:text-emerald-300"
           to="/my-work"
           active-class="text-emerald-400"
           exact-active-class="text-emerald-400"
@@ -68,21 +59,30 @@ useHead({
           <MyWorkIcon aria-hidden="true" focusable="false" />
           <span class="sr-only">to my work</span>
         </RouterLink>
-        <a
-          class="cursor-pointer"
-          href="https://github.com/FlorianBx"
-          target="_blank"
+        <RouterLink
+          class="cursor-pointer hover:text-emerald-300"
+          to="/blog"
+          active-class="text-emerald-400"
+          exact-active-class="text-emerald-400"
         >
-          <GithubIcon aria-hidden="true" focusable="false" />
-          <span class="sr-only">to my Github</span>
-        </a>
+          <ArticleIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to the blog</span>
+        </RouterLink>
         <a
-          class="cursor-pointer"
+          class="cursor-pointer hover:text-emerald-300"
           href="https://www.linkedin.com/in/florianbeaumont"
           target="_blank"
         >
           <LinkedinIcon aria-hidden="true" focusable="false" />
           <span class="sr-only">to my Linkedin</span>
+        </a>
+        <a
+          class="cursor-pointer hover:text-emerald-300 m-0.5"
+          href="https://github.com/FlorianBx"
+          target="_blank"
+        >
+          <GithubIcon aria-hidden="true" focusable="false" />
+          <span class="sr-only">to my Github</span>
         </a>
       </nav>
     </header>
