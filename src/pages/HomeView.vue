@@ -1,3 +1,3 @@
 <template>
-  <h1>Hello Tony BOY!</h1>
+  <h1 class="text-8xl font-bold text-gray-800">JSPAS</h1>
 </template>
