@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
+import type { ContributionWeek } from '@/types/github'
+
+const props = defineProps<{
+  contributions: ContributionWeek[]
+}>()
 
 interface Contribution {
   date: string;
@@ -7,9 +12,8 @@ interface Contribution {
   level: number;
 }
 
-const contributions = ref<Contribution[]>([]);
-const loading = ref(true);
-const error = ref<string | null>(null);
+// const loading = ref(true);
+// const error = ref<string | null>(null);
 const CONTRIB_COLORS = [
   "oklch(37.8% 0.077 168.94)",
   "oklch(50.8% 0.118 165.612)",
@@ -18,24 +22,24 @@ const CONTRIB_COLORS = [
   "oklch(84.5% 0.143 164.978)",
 ];
 
-onMounted(async () => {
-  try {
-    const res = await fetch(
-      "https://github-contributions-api.jogruber.de/v4/florianbx",
-    );
-    if (!res.ok) throw new Error("Erreur réseau");
-    const data = await res.json();
-    if (Array.isArray(data.contributions)) {
-      contributions.value = data.contributions;
-    } else {
-      throw new Error("Aucune donnée de contribution trouvée");
-    }
-  } catch (e: any) {
-    error.value = e.message;
-  } finally {
-    loading.value = false;
-  }
-});
+// onMounted(async () => {
+//   try {
+//     const res = await fetch(
+//       "https://github-contributions-api.jogruber.de/v4/florianbx",
+//     );
+//     if (!res.ok) throw new Error("Erreur réseau");
+//     const data = await res.json();
+//     if (Array.isArray(data.contributions)) {
+//       contributions.value = data.contributions;
+//     } else {
+//       throw new Error("Aucune donnée de contribution trouvée");
+//     }
+//   } catch (e: any) {
+//     error.value = e.message;
+//   } finally {
+//     loading.value = false;
+//   }
+// });
 
 function getColor(level: number) {
   switch (level) {
@@ -67,7 +71,7 @@ function getHeatmapDates() {
 }
 
 const heatmapDays = computed(() => {
-  const map = Object.fromEntries(contributions.value.map((c) => [c.date, c]));
+  const map = Object.fromEntries(props.contributions.map((c: any) => [c.date, c]));
   return getHeatmapDates().map((date) =>
     map[date] ? map[date] : { date, count: 0, level: 0 },
   );
@@ -85,9 +89,9 @@ const weeks = computed(() => {
 <template>
   <div>
     <h2 class="text-xl text-slate-300 font-semibold mb-2">Contributions in the last year</h2>
-    <div v-if="loading">Chargement...</div>
-    <div v-else-if="error">Erreur : {{ error }}</div>
-    <div v-else>
+    <!-- <div v-if="loading">Chargement...</div> -->
+    <!-- <div v-else-if="error">Erreur : {{ error }}</div> -->
+    <div>
       <div class="overflow-x-auto">
         <div class="flex" style="gap: 3px">
           <div

@@ -33,7 +33,6 @@ onMounted(async () => {
       "https://api.github.com/users/florianbx/repos?per_page=300&page=2",
     );
     data = [...(await res.json()), ...(await res2.json())];
-    console.log(data);
     repos.value = data.filter((repo) =>
       (VALID_REPO as readonly string[]).includes(repo.name),
     );

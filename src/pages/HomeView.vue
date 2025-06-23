@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import Contributions from "@/components/Contributions.vue"
+import Contributions from "@/components/Contributions.vue";
+import { useGithubStore } from '@/stores/github';
+
+const githubStore = useGithubStore()
+
 </script>
 
 <template>
@@ -11,7 +15,9 @@ import Contributions from "@/components/Contributions.vue"
           <p>
             Hi I'm <span class="text-xl font-bold">Florian</span> <br /><br />
             I'm a specialized
-            <strong class="font-semibold text-white text-xl">Frontend Developer</strong>
+            <strong class="font-semibold text-white text-xl"
+              >Frontend Developer</strong
+            >
             working mostly with
             <span class="text-emerald-400 font-semibold text-4xl">VUE.JS</span
             >.<br /><br />
@@ -40,7 +46,7 @@ import Contributions from "@/components/Contributions.vue"
           alt=""
         />
       </div>
-    <Contributions class="mt-24" />
+      <Contributions :contributions="githubStore.contributions" class="mt-24" />
     </div>
   </section>
 </template>
