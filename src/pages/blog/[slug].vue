@@ -25,13 +25,13 @@ function goBack() {
 </script>
 
 <template>
-  <div>
-    <button @click="goBack" class="mb-6 py-2 bg-black rounded cursor-pointer">
+  <div class="px-8">
+    <button @click="goBack" class="text-2xl mb-10 py-4 bg-black rounded cursor-pointer">
       ← Retour
     </button>
-    <article v-if="post && post.frontmatter.title">
-      <h1 class="text-6xl pb-8">{{ post.frontmatter.title }}</h1>
-      <div v-html="post.html" class="markdown-body prose" />
+    <article class="prose dark:prose-invert min-w-4xl" v-if="post && post.frontmatter.title">
+      <h1 class="text-4xl pb-0">{{ post.frontmatter.title }}</h1>
+      <div v-html="post.html" class="markdown-body" />
     </article>
     <p v-else>Article not found…</p>
   </div>
