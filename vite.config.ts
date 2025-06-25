@@ -4,23 +4,32 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import Pages from "vite-plugin-pages";
-import Sitemap from "vite-plugin-pages-sitemap";
+import generateSitemap from 'vite-plugin-pages-sitemap'
 import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue({ include: [/\.vue$/, /\.md$/] }),
-    // vueDevTools(),
     tailwindcss(),
+
     Pages({
       dirs: "src/pages",
       extensions: ["vue"],
-      onRoutesGenerated: (routes) =>
-        Sitemap({
-          routes,
-          hostname: "https://dapper-nasturtium-49f901.netlify.app/",
-        }),
+      extendRoute(route) {
+        route.meta = {
+          sitemap: {
+            lastmod: new Date().toISOString(),
+          },
+        };
+        return route;
+      },
+     onRoutesGenerated: async routes => {
+        await generateSitemap({
+        routes,
+        hostname: "https://florianbeaumont.dev",
+      })
+      }
     }),
   ],
   resolve: {
