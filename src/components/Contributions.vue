@@ -73,7 +73,7 @@ const weeks = computed(() => {
       Contributions in the last year
     </h2>
     <div>
-      <div class="py-1" tabindex="0" aria-label="GitHub contributions graph" role="region">
+      <div class="overflow-auto lg:overflow-hidden py-1" tabindex="0" aria-label="GitHub contributions graph" role="region">
         <div class="flex gap-[3px] min-w-[420px] sm:min-w-[600px] md:min-w-[740px]">
           <div
             v-for="(week, i) in weeks"

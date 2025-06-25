@@ -57,14 +57,14 @@ const github = useGithubStore();
 
 <template>
   <section
-    class="flex flex-col xl:flex-row xl:gap-32 gap-8 items-start px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
+    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 scale-90 md:px-12 py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
     <h1 id="section-title-unique" class="sr-only text-2xl">
       Florian Beaumont – Notable Projects in Vue.js &amp; TypeScript
     </h1>
 
-    <h2 class="hidden xl:flex flex-col text-8xl font-bold text-white leading-none mr-8 select-none">
+    <h2 class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
       <span>P</span><span>R</span><span>O</span>
     </h2>
 
