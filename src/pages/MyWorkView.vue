@@ -56,33 +56,51 @@ const github = useGithubStore();
 </script>
 
 <template>
-  <section class="flex gap-32" aria-labelledby="section-title-unique">
-    <h1 id="section-title-unique" class="sr-only">Florian Beaumont – Notable Projects in Vue.js & TypeScript</h1>
-    <h2 class="hidden xl:block text-8xl font-bold text-white">P<br />R<br />O</h2>
-    <div class="max-w-4xl mt-12">
-      <div v-if="github.loadingRepos">Chargement…</div>
-      <div v-else-if="github.errorRepos">Erreur : {{ github.errorRepos }}</div>
-      <div v-else class="grid lg:grid-cols-2 gap-6">
+  <section
+    class="flex flex-col xl:flex-row xl:gap-32 gap-8 items-start px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
+    aria-labelledby="section-title-unique"
+  >
+    <h1 id="section-title-unique" class="sr-only">
+      Florian Beaumont – Notable Projects in Vue.js &amp; TypeScript
+    </h1>
+
+    <h2 class="hidden xl:flex flex-col text-8xl font-bold text-white leading-none mr-8 select-none">
+      <span>P</span><span>R</span><span>O</span>
+    </h2>
+
+    <div class="w-full max-w-3xl xl:mt-0 mt-6">
+      <div v-if="github.loadingRepos" class="text-center py-12">Chargement…</div>
+      <div v-else-if="github.errorRepos" class="text-red-500 text-center py-12">
+        Erreur&nbsp;: {{ github.errorRepos }}
+      </div>
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div
           v-for="repo in github.repos"
           :key="repo.id"
-          class="border border-stone-400 rounded w-(150px) h-42 bg-black hover:bg-emerald-900"
+          class="border border-stone-400 rounded bg-black hover:bg-emerald-900 transition-colors p-0 h-full flex flex-col"
         >
           <a
-            class="flex flex-col justify-between p-4 h-full"
+            class="flex flex-col justify-between p-5 h-full min-h-[11rem]"
             :href="repo.html_url"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Aller au dépôt {{ repo.name }} sur GitHub"
           >
-            <h2 class="text-emerald-300 font-semibold">{{ repo.name }}</h2>
-            <p class="line-clamp-3 text-sm my-2">{{ repo.description }}</p>
-            <div class="flex gap-4">
-              {{ repo.language ?? "Vue" }}
-              <div>
-                <span style="color: transparent; text-shadow: 0 0 0 #aaa">
+            <h2 class="text-emerald-300 font-semibold text-lg break-words -mt-1 mb-1">{{ repo.name }}</h2>
+            <p
+              class="line-clamp-3 text-sm text-gray-300 my-2 min-h-[2.8rem]"
+              v-if="repo.description"
+            >
+              {{ repo.description }}
+            </p>
+            <div class="flex gap-4 text-gray-300 text-xs mt-auto">
+              <span>{{ repo.language ?? "Vue" }}</span>
+              <span class="flex items-center gap-1">
+                <span aria-hidden="true" style="color: transparent; text-shadow: 0 0 0 #aaa">
                   ⭐
-                </span>
+                </span> 
                 {{ repo.stargazers_count }}
-              </div>
+              </span>
             </div>
           </a>
         </div>
