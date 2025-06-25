@@ -5,6 +5,7 @@ import HomeIcon from "@/components/HomeIcon.vue";
 import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
+import { computed, onMounted, ref } from "vue";
 
 useHead({
   title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
@@ -31,7 +32,7 @@ useHead({
     { property: "og:url", content: "https://florianbeaumont.dev/" },
     {
       property: "og:image",
-      content: "https://florianbeaumont.dev/images/small-avatar.avif"
+      content: "https://florianbeaumont.dev/images/small-avatar.avif",
     },
     { name: "twitter:card", content: "summary_large_image" },
     {
@@ -45,7 +46,7 @@ useHead({
     },
     {
       name: "twitter:image",
-      content: "https://florianbeaumont.dev/images/small-avatar.avif"
+      content: "https://florianbeaumont.dev/images/small-avatar.avif",
     },
     { name: "twitter:creator", content: "@florianbeaumont" },
   ],
@@ -69,7 +70,7 @@ useHead({
           "https://github.com/florianbx",
           "https://twitter.com/florianbx",
           "https://linkedin.com/in/florianbeaumont",
-          "https://bsky.app/profile/did:plc:fcxpk2natbmzqzpgyljre4hx"
+          "https://bsky.app/profile/did:plc:fcxpk2natbmzqzpgyljre4hx",
         ],
         knowsAbout: [
           "Vue.js",
@@ -82,6 +83,15 @@ useHead({
     },
   ],
 });
+
+const hasMounted = ref(false);
+
+onMounted(() => {
+  hasMounted.value = true;
+});
+
+const transitionAppear = computed(() => hasMounted.value);
+const transitionPage = computed(() => "page");
 </script>
 
 <template>
@@ -136,7 +146,11 @@ useHead({
       </header>
       <main id="main">
         <router-view v-slot="{ Component }">
-          <transition name="page" mode="out-in" appear>
+          <transition
+            :name="transitionPage"
+            mode="out-in"
+            :appear="transitionAppear"
+          >
             <KeepAlive>
               <component :is="Component" />
             </KeepAlive>
