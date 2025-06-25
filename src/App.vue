@@ -5,7 +5,6 @@ import HomeIcon from "@/components/HomeIcon.vue";
 import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
-import heroImage from '@/assets/images/1696890004250.avif';
 
 useHead({
   title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
@@ -32,7 +31,7 @@ useHead({
     { property: "og:url", content: "https://florianbeaumont.dev/" },
     {
       property: "og:image",
-      content: heroImage, 
+      content: "https://florianbeaumont.dev/images/small-avatar.avif"
     },
     { name: "twitter:card", content: "summary_large_image" },
     {
@@ -46,7 +45,7 @@ useHead({
     },
     {
       name: "twitter:image",
-      content: heroImage,
+      content: "https://florianbeaumont.dev/images/small-avatar.avif"
     },
     { name: "twitter:creator", content: "@florianbeaumont" },
   ],
@@ -60,7 +59,7 @@ useHead({
         "@id": "https://florianbeaumont.dev/#person",
         name: "Florian Beaumont",
         url: "https://florianbeaumont.dev/",
-        image: heroImage,
+        image: "https://florianbeaumont.dev/images/small-avatar.avif",
         jobTitle: "Frontend Developer",
         worksFor: {
           "@type": "Organization",

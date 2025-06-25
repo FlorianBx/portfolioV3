@@ -2,7 +2,6 @@
 import { useHead } from "@unhead/vue"
 import Contributions from "@/components/Contributions.vue";
 import { useGithubStore } from '@/stores/github';
-import heroImage from '@/assets/images/1696890004250.avif'
 
 useHead({
   title: "Florian Beaumont – Frontend Developer • Vue.js & TypeScript Specialist",
@@ -29,7 +28,7 @@ useHead({
     },
     {
       property: "og:image",
-      content: heroImage
+      content: "https://florianbeaumont.dev/images/small-avatar.avif"
     },
     {
       name: "twitter:title",
@@ -41,7 +40,7 @@ useHead({
     },
     {
       name: "twitter:image",
-      content: heroImage 
+      content: "https://florianbeaumont.dev/images/small-avatar.avif"
     },
     {
       name: "twitter:card",
@@ -101,14 +100,19 @@ const githubStore = useGithubStore()
       </p>
     </div>
     <div class="flex justify-center items-center order-1 lg:order-2">
-    <img
-      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full aspect-video lg:aspect-auto object-cover object-[20%_15%] rounded shadow-xl transform grayscale scale-100 rotate-2 lg:scale-x-[-1] hover:rotate-0 transition-all duration-200 cursor-pointer"
-      src="@/assets/images/1696890004250.avif"
-      width="530"
-      height="300"
-      alt="Florian Beaumont – Frontend Developer and Vue.js Expert"
-      fetchpriority="high"
-    />
+      <img
+        src="/images/medium-avatar.avif"
+        srcset="
+          /images/small-avatar.avif 320w,
+          /images/medium-avatar.avif 530w
+        "
+        sizes="(max-width: 640px) 320px, 530px"
+        width="530"
+        height="300"
+        alt="Florian Beaumont – Frontend Developer and Vue.js Expert"
+        class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full aspect-video lg:aspect-auto object-cover object-[20%_15%] rounded shadow-xl transform grayscale scale-100 rotate-2 lg:scale-x-[-1] hover:rotate-0 transition-all duration-200 cursor-pointer"
+        fetchpriority="high"
+      />
     </div>
   </div>
   <Contributions :contributions="githubStore.contributions" class="mt-8 sm:mt-10 xl:mt-14 scale-90" />
