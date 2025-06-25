@@ -41,7 +41,7 @@ function getHeatmapDates() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const days: string[] = [];
-  for (let i = 324; i >= 0; i--) {
+  for (let i = 274; i >= 0; i--) {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     days.push(d.toISOString().slice(0, 10));
@@ -73,56 +73,33 @@ const weeks = computed(() => {
       Contributions in the last year
     </h2>
     <div>
-      <div class="overflow-x-auto" tabindex="-1">
-        <div class="flex" style="gap: 3px">
+      <div class="overflow-x-auto py-1" tabindex="0" aria-label="GitHub contributions graph" role="region">
+        <div class="flex gap-[3px] min-w-[420px] sm:min-w-[600px] md:min-w-[740px]">
           <div
             v-for="(week, i) in weeks"
             :key="i"
-            class="flex flex-col"
-            style="gap: 2px"
+            class="flex flex-col gap-[2px]"
           >
             <div
               v-for="(day, j) in week"
               :key="day.date + j"
-              :title="
-                day.date ? `${day.date}: ${day.count} contribution(s)` : ''
-              "
-              class="w-4 h-4 rounded-sm"
+              :title="day.date ? `${day.date}: ${day.count} contribution(s)` : ''"
+              class="w-4 h-4 rounded-sm border border-[#232332] hover:border-gray-400 transition-colors duration-100"
               :style="{ background: getColor(day.level) }"
+              tabindex="0"
             />
           </div>
         </div>
       </div>
-      <p class="flex justify-end gap-2 mt-4 mr-1 text-xs bg-black text-gray-300">
+      <p class="flex flex-wrap items-center justify-end gap-1 mt-4 mr-1 text-xs bg-black text-gray-300 select-none">
         Less
-        <span
-          class="inline-block w-4 h-4 bg-emerald-900 align-middle rounded"
-        ></span>
-        <span
-          class="inline-block w-4 h-4 bg-emerald-700 align-middle rounded"
-        ></span>
-        <span
-          class="inline-block w-4 h-4 bg-emerald-500 align-middle rounded"
-        ></span>
-        <span
-          class="inline-block w-4 h-4 bg-emerald-400 align-middle rounded"
-        ></span>
-        <span
-          class="inline-block w-4 h-4 bg-emerald-300 align-middle rounded"
-        ></span>
+        <span class="inline-block w-4 h-4 bg-emerald-900 align-middle rounded"></span>
+        <span class="inline-block w-4 h-4 bg-emerald-700 align-middle rounded"></span>
+        <span class="inline-block w-4 h-4 bg-emerald-500 align-middle rounded"></span>
+        <span class="inline-block w-4 h-4 bg-emerald-400 align-middle rounded"></span>
+        <span class="inline-block w-4 h-4 bg-emerald-300 align-middle rounded"></span>
         More
       </p>
     </div>
   </div>
 </template>
-
-<style scoped>
-div[title] {
-  cursor: pointer;
-  border: 1px solid #232332;
-  transition: border-color 0.1s;
-}
-div[title]:hover {
-  border: 1.5px solid #aaa;
-}
-</style>
