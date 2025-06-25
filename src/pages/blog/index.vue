@@ -9,18 +9,19 @@ function formatDate(date: string): string {
 
 <template>
   <section
-    class="flex flex-col lg:flex-row xl:gap-12 items-start xl:items-stretch px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
+    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 scale-90 md:px-12 py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
     <h1 id="section-title-unique" class="sr-only">
       Florian Beaumont – Technical Blog &amp; Vue.js Learning
     </h1>
 
-    <h2 class="hidden lg:flex flex-col justify-start items-center mr-8 mt-0 pb-8 text-8xl font-bold leading-none select-none">
+    <h2 class="hidden lg:flex flex-col justify-start items-center mr-5 mt-0 pb-0 text-8xl font-bold leading-none select-none">
       <span>B</span>
       <span>L</span>
-      <span>O</span>
-      <span>G</span>
+      <span class="relative">O
+      <span class="absolute top-15 left-11 text-[0.4em]">G</span>
+      </span>
     </h2>
 
     <ul class="w-full max-w-2xl prose prose-li:mb-0 prose-li:mt-0 dark:prose-invert xl:mt-0 mt-6">

@@ -55,65 +55,63 @@ const githubStore = useGithubStore()
 
 <template>
   <section
-    class="flex flex-col xl:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
+    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
     <h1 class="sr-only" id="section-title-unique">
       Florian Beaumont – Frontend Developer &amp; Vue.js Specialist
     </h1>
 
-    <h2 class="hidden xl:flex flex-col text-8xl font-bold text-white leading-none mr-10 select-none">
+    <h2 class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
       <span>D</span>
       <span>E</span>
       <span>V</span>
     </h2>
-    <div class="w-full max-w-3xl xl:mt-0 mt-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="text-white font-sans text-lg leading-relaxed max-w-xl order-2 lg:order-1">
-          <p>
-            Hi I'm <span class="text-xl font-bold">Florian</span>
-            <br /><br />
-            I'm a specialized
-            <strong class="font-semibold text-white text-xl">
-              Frontend Developer
-            </strong>
-            working mostly with
-            <span class="text-emerald-400 font-semibold text-4xl">
-              VUE.JS
-            </span><br /><br />
-            I spend my time exploring
-            <span class="text-sky-400 text-xl font-bold">
-              OPEN SOURCE
-            </span>
-            <span aria-hidden="true" role="img">🌱</span>, building fun stuff, and always learning something new.<br /><br />
-            I also like experimenting with ideas — building tools and libraries
-            across different languages, just to see where they lead.<br /><br />
-            If you want to chat, come say hi at a
-            <span class="text-white text-2xl font-bold">
-              Vuejs Paris
-            </span>
-            meetup or
-            <a
-              href="https://cal.com/fbeaumont/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-teal-100 text-xl font-medium underline underline-offset-8 transition-colors hover:text-emerald-300"
-            >book a call</a
-            >.
-          </p>
-        </div>
-        <div class="flex justify-center items-center order-1 lg:order-2">
-          <img
-            class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full aspect-video lg:aspect-auto object-cover object-[20%_15%] rounded shadow-xl transform grayscale scale-100 rotate-2 lg:scale-x-[-1] hover:rotate-0 hover:grayscale-0 transition-all duration-200 cursor-pointer"
-            src="@/assets/images/1696890004250.avif"
-            width="530"
-            height="300"
-            alt="Florian Beaumont – Frontend Developer and Vue.js Expert"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <Contributions :contributions="githubStore.contributions" class="mt-20 sm:mt-24" />
+
+<div class="w-full max-w-2xl xl:mt-0 mt-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+    <div class="text-white font-sans text-base leading-normal max-w-md order-2 lg:order-1">
+      <p>
+        Hi I'm <span class="text-lg font-bold">Florian</span>
+        <br /><br />
+        I'm a specialized
+        <strong class="font-semibold text-white text-lg">Frontend Developer</strong>
+        working mostly with
+        <span class="text-emerald-400 font-semibold text-2xl">
+          VUE.JS
+        </span><br /><br />
+        I spend my time exploring
+        <span class="text-sky-400 text-lg font-bold">
+          OPEN SOURCE
+        </span>
+        <span aria-hidden="true" role="img">🌱</span>, building fun stuff, and always learning something new.<br /><br />
+        I also like experimenting with ideas — building tools and libraries
+        across different languages, just to see where they lead.<br /><br />
+        If you want to chat, come say hi at a
+        <span class="text-white text-xl font-bold">
+          Vuejs Paris
+        </span>
+        meetup or
+        <a
+          href="https://cal.com/fbeaumont/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-teal-100 text-lg font-medium underline underline-offset-8 transition-colors hover:text-emerald-300"
+        >book a call</a>.
+      </p>
     </div>
+    <div class="flex justify-center items-center order-1 lg:order-2">
+    <img
+      class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full aspect-video lg:aspect-auto object-cover object-[20%_15%] rounded shadow-xl transform grayscale scale-100 rotate-2 lg:scale-x-[-1] hover:rotate-0 transition-all duration-200 cursor-pointer"
+      src="@/assets/images/1696890004250.avif"
+      width="530"
+      height="300"
+      alt="Florian Beaumont – Frontend Developer and Vue.js Expert"
+      fetchpriority="high"
+    />
+    </div>
+  </div>
+  <Contributions :contributions="githubStore.contributions" class="mt-8 sm:mt-10 xl:mt-14 scale-90" />
+</div>
   </section>
 </template>
