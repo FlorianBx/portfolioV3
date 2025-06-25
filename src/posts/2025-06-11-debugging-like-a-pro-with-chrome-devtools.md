@@ -3,8 +3,6 @@ title: "Debugging Like a Pro with Chrome DevTools (and a Smile)"
 date: 2025-06-11
 ---
 
-# Debugging Like a Pro with Chrome DevTools (and a Smile)
-
 If you’re building for the web, **Chrome DevTools** is your best friend. Whether you’re poking around the DOM, chasing a sneaky JavaScript bug, or just wondering why your API call is sulking, here’s the chill, passionate guide you wish you’d read sooner.
 
 ---

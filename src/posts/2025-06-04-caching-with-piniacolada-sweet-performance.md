@@ -3,8 +3,6 @@ title: "Caching with Piniacolada: Sweet Performance for Your App"
 date: 2025-06-04
 ---
 
-# Caching with Piniacolada: Sweet Performance for Your App
-
 Want to make your app snappier and cut down on API calls? Meet **Piniacolada**—a super easy, high-performance caching library that’s as refreshing as its name. Here’s how to use it, from one performance fan to another.
 
 ---

@@ -3,8 +3,6 @@ title: "Model Context Protocol (MCP): A Game-Changer for Client-Side Rendering"
 date: 2025-06-20
 ---
 
-# Model Context Protocol (MCP): A Game-Changer for Client-Side Rendering
-
 Let’s geek out for a second: the **Model Context Protocol (MCP)** is shaking up how we do client-side rendering. If you care about accessibility, SEO, performance, or just want to build cooler stuff, MCP is a breath of fresh air for modern frameworks.
 
 ---

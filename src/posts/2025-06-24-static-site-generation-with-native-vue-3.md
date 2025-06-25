@@ -3,8 +3,6 @@ title: "Static Site Generation with Native Vue 3: Fast, Fun & Framework-Free"
 date: 2025-06-24
 ---
 
-# Static Site Generation with Native Vue 3: Fast, Fun & Framework-Free
-
 Want all the SSG (Static Site Generation) perks—speed, SEO, simplicity—without a heavy framework like Nuxt? You can totally do it with **plain Vue 3** and **Vite**. Here’s how, from one web enthusiast to another.
 
 ---

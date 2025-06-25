@@ -5,32 +5,81 @@ import HomeIcon from "@/components/HomeIcon.vue";
 import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
+import heroImage from '@/assets/images/1696890004250.avif';
 
 useHead({
-  title:
-    "Florian Beaumont Frontend Developer – Vue 3 Specialist & Open Source Contributor",
+  title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
   meta: [
     {
       name: "description",
       content:
-        "Hi! I’m a freelance frontend developer specialized in Vue 3. I build performant web interfaces and contribute to open source projects.",
+        "Florian Beaumont is a freelance frontend developer specializing in Vue.js 3 and TypeScript. Building modern web apps, giving tech talks, and sharing open-source resources.",
+    },
+    {
+      property: "og:site_name",
+      content: "Florian Beaumont | Frontend Developer",
     },
     {
       property: "og:title",
-      content: "Frontend Developer – Vue 3 Expert",
+      content: "Florian Beaumont – Vue 3 & TypeScript Specialist",
     },
     {
       property: "og:description",
       content:
-        "Freelance developer focused on modern frontend development with Vue 3, TypeScript and open-source contributions.",
+        "Florian Beaumont is a freelance frontend developer and educator focusing on Vue.js 3, TypeScript, and modern web performance.",
+    },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://florianbeaumont.dev/" },
+    {
+      property: "og:image",
+      content: heroImage, 
+    },
+    { name: "twitter:card", content: "summary_large_image" },
+    {
+      name: "twitter:title",
+      content: "Florian Beaumont – Vue.js Expert & Frontend Trainer",
     },
     {
-      property: "og:type",
-      content: "website",
+      name: "twitter:description",
+      content:
+        "Freelance Vue 3 developer. Projects, talks, open-source and technical content by Florian Beaumont.",
     },
     {
-      property: "og:url",
-      content: "https://ton-site.netlify.app/",
+      name: "twitter:image",
+      content: heroImage,
+    },
+    { name: "twitter:creator", content: "@florianbeaumont" },
+  ],
+  link: [{ rel: "canonical", href: "https://florianbeaumont.dev/" }],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://florianbeaumont.dev/#person",
+        name: "Florian Beaumont",
+        url: "https://florianbeaumont.dev/",
+        image: heroImage,
+        jobTitle: "Frontend Developer",
+        worksFor: {
+          "@type": "Organization",
+          name: "Freelance",
+        },
+        sameAs: [
+          "https://github.com/florianbx",
+          "https://twitter.com/florianbx",
+          "https://linkedin.com/in/florianbeaumont",
+          "https://bsky.app/profile/did:plc:fcxpk2natbmzqzpgyljre4hx"
+        ],
+        knowsAbout: [
+          "Vue.js",
+          "TypeScript",
+          "Frontend",
+          "Web Performance",
+          "Open Source",
+        ],
+      }),
     },
   ],
 });

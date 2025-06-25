@@ -3,8 +3,6 @@ title: "Pinia + Composition API: State Management That Just Feels Right"
 date: 2025-06-24
 ---
 
-# Pinia + Composition API: State Management That Just Feels Right
-
 With Vue 3 and the Composition API, **Pinia** is the new go-to for global state management. It’s simpler, more type-friendly, and fits modern architecture like a glove. Here’s why you’ll love it—and how to get started, chill-dev style.
 
 ---

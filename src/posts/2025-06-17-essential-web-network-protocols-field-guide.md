@@ -3,8 +3,6 @@ title: "Essential Web Network Protocols: A Dev’s Friendly Field Guide"
 date: 2025-06-17
 ---
 
-# Essential Web Network Protocols: A Dev’s Friendly Field Guide
-
 If you’re building for the web, knowing your **network protocols** is like having a backstage pass. It helps you design, debug, and optimize like a pro. Here’s a relaxed, passionate tour of the protocols every frontend (and API) dev should know.
 
 ---

@@ -3,8 +3,6 @@ title: "Binary Search: The Algorithm Every Dev Should Love"
 date: 2025-06-20
 ---
 
-# Binary Search: The Algorithm Every Dev Should Love
-
 Let’s talk about **binary search**—the classic, super-efficient way to find stuff in a sorted array. It’s everywhere: databases, search engines, even deep inside your favorite programming languages. And honestly? It’s a joy to use.
 
 ---

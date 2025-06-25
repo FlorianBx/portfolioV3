@@ -1,13 +1,11 @@
 import fm from 'front-matter'
 import MarkdownIt from 'markdown-it'
 import anchor from 'markdown-it-anchor'
-import highlight from 'markdown-it-highlightjs'
 import tasklists from 'markdown-it-task-lists'
 import toc from 'markdown-it-toc-done-right'
 
 const md = new MarkdownIt({ html: true })
   .use(anchor)
-  .use(highlight)
   .use(tasklists)
   .use(toc)
 

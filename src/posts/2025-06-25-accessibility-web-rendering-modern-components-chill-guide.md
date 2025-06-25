@@ -3,8 +3,6 @@ title: "Accessibility, Web Rendering & Modern Components: A Chill Guide"
 date: 2025-06-25
 ---
 
-# Accessibility, Web Rendering & Modern Components: A Chill Guide
-
 Let’s take a relaxed but passionate tour through three essentials for any frontend dev:
 
 1. **Digital accessibility** (because everyone deserves the web)
