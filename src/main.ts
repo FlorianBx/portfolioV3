@@ -5,7 +5,6 @@ import { routes } from "./routes";
 import { useGithubStore } from "@/stores/github";
 import "@/assets/css/main.css";
 
-
 export const createApp = ViteSSG(
   App,
   { routes },
