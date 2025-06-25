@@ -57,7 +57,7 @@ const githubStore = useGithubStore()
     class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 md:px-12 py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
-    <h1 class="sr-only" id="section-title-unique">
+    <h1 class="sr-only text-2xl" id="section-title-unique">
       Florian Beaumont – Frontend Developer &amp; Vue.js Specialist
     </h1>
 
