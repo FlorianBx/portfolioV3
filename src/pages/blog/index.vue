@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { usePosts } from '@/composables/usePosts'
 const posts = usePosts()
-
-function formatDate(date: string): string {
-  return date?.toString().slice(4, 15) ?? ''
-}
 </script>
 
 <template>
@@ -28,16 +24,13 @@ function formatDate(date: string): string {
       <li
         v-for="post in posts"
         :key="post.slug"
-        class="py-3 text-lg md:text-xl transition-colors hover:bg-gray-50 dark:hover:bg-gray-900 rounded"
+        class="py-3 text-lg md:text-xl rounded"
       >
         <router-link
           :to="`/blog/${post.slug}`"
-          class="flex flex-col xl:flex-row xl:items-center justify-between gap-2 xl:gap-4 underline underline-offset-4"
+          class="flex flex-col xl:flex-ro transition-all hover:no-underline xl:items-start justify-between gap-2 xl:gap-4 underline underline-offset-6 leading-8"
         >
-          <span class="font-medium break-words">{{ post.frontmatter.title }}</span>
-          <span class="text-xs bg-white text-black px-2.5 py-1.5 rounded self-start xl:self-auto mt-1 xl:mt-0">
-            {{ formatDate(post.frontmatter.date) }}
-          </span>
+          <span class="font-medium break-words transition-colors hover:text-bold">{{ post.frontmatter.title }}</span>
         </router-link>
       </li>
     </ul>
