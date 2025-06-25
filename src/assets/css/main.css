@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@layer base {
+  html, body {
+    @apply bg-(--color-black) text-(--color-white);
+  }
+}
+
 @theme {
   /* colors */
   --color-black:      #121212;

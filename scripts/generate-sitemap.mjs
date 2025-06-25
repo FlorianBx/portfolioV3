@@ -3,13 +3,11 @@ import { resolve } from "node:path";
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
-// Récupère tous les slugs des articles de blog
 const postsDir = join(process.cwd(), "src", "posts");
 const postFiles = readdirSync(postsDir)
   .filter((f) => f.endsWith(".md"))
   .map((f) => f.replace(/\.md$/, ""));
 
-// Construit la liste des routes
 const routes = [
   "/",
   "/blog",
