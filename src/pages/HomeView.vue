@@ -115,7 +115,7 @@ const githubStore = useGithubStore()
       />
     </div>
   </div>
-  <Contributions :contributions="githubStore.contributions" class="mt-8 sm:mt-10 xl:mt-14 scale-90" />
+  <Contributions :contributions="githubStore.contributions" class="mt-8 sm:mt-10 xl:mt-14" />
 </div>
   </section>
 </template>

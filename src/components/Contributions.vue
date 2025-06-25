@@ -41,7 +41,7 @@ function getHeatmapDates() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const days: string[] = [];
-  for (let i = 274; i >= 0; i--) {
+  for (let i = 240; i >= 0; i--) {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     days.push(d.toISOString().slice(0, 10));
@@ -73,7 +73,7 @@ const weeks = computed(() => {
       Contributions in the last year
     </h2>
     <div>
-      <div class="overflow-x-auto py-1" tabindex="0" aria-label="GitHub contributions graph" role="region">
+      <div class="py-1" tabindex="0" aria-label="GitHub contributions graph" role="region">
         <div class="flex gap-[3px] min-w-[420px] sm:min-w-[600px] md:min-w-[740px]">
           <div
             v-for="(week, i) in weeks"
