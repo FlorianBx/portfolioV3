@@ -27,6 +27,7 @@
     "@types/node": "^22.14.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",
+    "@vueuse/core": "^13.4.0",
     "@vueuse/head": "^2.0.0",
     "beasties": "^0.3.4",
     "front-matter": "^4.0.2",

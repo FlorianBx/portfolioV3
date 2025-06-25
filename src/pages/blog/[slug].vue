@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { usePosts } from "@/composables/usePosts";
+import { useDebounce } from "@vueuse/core";
 
 interface Frontmatter {
   title: string;
@@ -18,6 +19,7 @@ const route = useRoute();
 const router = useRouter();
 const all = usePosts();
 const post = computed<Post | undefined>(() => all.find((p) => p.slug === route.params.slug));
+const debouncedPost = useDebounce(post, 400);
 
 function formatDate(date: string): string {
   return date?.toString().slice(4, 15) ?? ''
@@ -32,10 +34,10 @@ function goBack() {
   <div class="px-4 sm:px-6 md:px-8 lg:px-16 py-4 max-w-screen-xl mx-auto">
     <button
       @click="goBack"
-      class="w-full sm:w-auto flex items-center gap-2 text-base sm:text-2xl font-medium mb-8 sm:mb-10 py-3 sm:py-4 px-0 bg-black text-white rounded-md cursor-pointer transition-colors hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black"
+      class="sticky top-0 z-30 w-full sm:w-auto flex items-center gap-2 text-base sm:text-2xl font-medium mb-8 sm:mb-10 py-3 sm:py-4 px-0 bg-black text-white rounded-md cursor-pointer transition-colors hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black"
       aria-label="Retour à la liste des articles"
     >
-      <span aria-hidden="true">←</span> Retour
+      <span aria-hidden="true">←</span> Back
     </button>
     <div class="flex justify-center">
       <article
@@ -57,7 +59,7 @@ function goBack() {
           />
         </div>
       </article>
-      <p v-else class="text-center text-gray-500 italic">Article not found…</p>
+      <p v-else-if="!debouncedPost" class="text-center text-gray-500 italic">Article not found…</p>
     </div>
   </div>
 </template>
