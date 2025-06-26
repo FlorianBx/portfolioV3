@@ -6,6 +6,7 @@ import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
 import { computed, onMounted, ref } from "vue";
+import { gsap } from 'gsap';
 
 useHead({
   title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
@@ -88,6 +89,62 @@ const hasMounted = ref(false);
 
 onMounted(() => {
   hasMounted.value = true;
+  
+  const orbs = document.querySelectorAll('.bg-orb');
+  
+  gsap.set(orbs, { transformOrigin: "center center" });
+  
+  gsap.to(orbs[0], {
+    rotation: 360,
+    duration: 50,
+    repeat: -1,
+    ease: "none"
+  });
+  
+  gsap.to(orbs[1], {
+    rotation: -360,
+    duration: 40,
+    repeat: -1,
+    ease: "none"
+  });
+  
+  gsap.to(orbs[2], {
+    rotation: 360,
+    duration: 60,
+    repeat: -1,
+    ease: "none"
+  });
+  
+  const handleMouseMove = (e: MouseEvent) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    
+    gsap.to(orbs[0], {
+      x: x * 60,
+      y: y * 60,
+      scale: 1 + Math.abs(x) * 0.2,
+      duration: 1.5,
+      ease: "power3.out"
+    });
+    
+    gsap.to(orbs[1], {
+      x: x * 40,
+      y: y * 40,
+      scale: 1 + Math.abs(y) * 0.15,
+      duration: 1.8,
+      ease: "power3.out"
+    });
+    
+    gsap.to(orbs[2], {
+      x: x * 50,
+      y: y * 50,
+      scale: 1 + Math.abs(x + y) * 0.1,
+      duration: 1.6,
+      ease: "power3.out"
+    });
+  };
+  
+  document.addEventListener('mousemove', handleMouseMove);
 });
 
 const transitionAppear = computed(() => hasMounted.value);
@@ -101,55 +158,65 @@ const transitionPage = computed(() => "page");
       <!-- Subtle texture overlay -->
       <div class="absolute inset-0 opacity-30 bg-noise"></div>
       
-      <!-- Animated light orbs -->
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float-slow"></div>
-      <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-teal-400/15 rounded-full blur-2xl animate-float-delayed"></div>
-      <div class="absolute bottom-1/4 left-1/3 w-80 h-80 bg-emerald-300/8 rounded-full blur-3xl animate-float-reverse"></div>
+      <!-- Animated light orbs with parallax -->
+      <div class="bg-orb absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-float-slow transition-transform duration-100 ease-out orb-emerald-1"></div>
+      <div class="bg-orb absolute top-3/4 right-1/4 w-64 h-64 rounded-full blur-2xl animate-float-delayed transition-transform duration-150 ease-out orb-teal-1"></div>
+      <div class="bg-orb absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl animate-float-reverse transition-transform duration-200 ease-out orb-emerald-2"></div>
     </div>
     <div class="p-4 min-h-(--screen-minus-nav)">
       <header class="flex justify-end">
         <a href="#main" class="skip-link">Skip to main content</a>
         <nav class="pb-8 flex gap-4">
           <RouterLink
-            class="cursor-pointer hover:text-emerald-300"
+            class="nav-link group"
             to="/"
             active-class="text-emerald-400"
             exact-active-class="text-emerald-400"
           >
-            <HomeIcon aria-hidden="true" focusable="false" />
+            <div class="nav-icon-wrapper">
+              <HomeIcon aria-hidden="true" focusable="false" />
+            </div>
             <span class="sr-only">to the home</span>
           </RouterLink>
           <RouterLink
-            class="cursor-pointer hover:text-emerald-300"
+            class="nav-link group"
             to="/my-work"
             active-class="text-emerald-400"
             exact-active-class="text-emerald-400"
           >
-            <MyWorkIcon aria-hidden="true" focusable="false" />
+            <div class="nav-icon-wrapper">
+              <MyWorkIcon aria-hidden="true" focusable="false" />
+            </div>
             <span class="sr-only">to my work</span>
           </RouterLink>
           <RouterLink
-            class="cursor-pointer hover:text-emerald-300"
+            class="nav-link group"
             to="/blog"
             active-class="text-emerald-400"
           >
-            <ArticleIcon aria-hidden="true" focusable="false" />
+            <div class="nav-icon-wrapper">
+              <ArticleIcon aria-hidden="true" focusable="false" />
+            </div>
             <span class="sr-only">to the blog</span>
           </RouterLink>
           <a
-            class="cursor-pointer hover:text-emerald-300"
+            class="nav-link group"
             href="https://www.linkedin.com/in/florianbeaumont"
             target="_blank"
           >
-            <LinkedinIcon aria-hidden="true" focusable="false" />
+            <div class="nav-icon-wrapper">
+              <LinkedinIcon aria-hidden="true" focusable="false" />
+            </div>
             <span class="sr-only">to my Linkedin</span>
           </a>
           <a
-            class="cursor-pointer hover:text-emerald-300 m-0.5"
+            class="nav-link group m-0.5"
             href="https://github.com/FlorianBx"
             target="_blank"
           >
-            <GithubIcon aria-hidden="true" focusable="false" />
+            <div class="nav-icon-wrapper">
+              <GithubIcon aria-hidden="true" focusable="false" />
+            </div>
             <span class="sr-only">to my Github</span>
           </a>
         </nav>
@@ -195,22 +262,26 @@ const transitionPage = computed(() => "page");
   z-index: 1000;
   text-decoration: none;
   font-size: 0.875rem;
-  transition: top 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .skip-link:focus {
   top: 0;
 }
 
-.page-enter-active,
+.page-enter-active {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .page-leave-active {
-  transition: all 0.15s ease-in-out;
+  transition: all 0.15s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
 
 .page-enter-from {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateY(20px);
 }
+
 .page-enter-to {
   opacity: 1;
   transform: translateY(0);
@@ -220,8 +291,9 @@ const transitionPage = computed(() => "page");
   opacity: 1;
   transform: translateY(0);
 }
+
 .page-leave-to {
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateY(-10px);
 }
 </style>

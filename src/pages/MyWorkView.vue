@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
+import { onMounted, ref } from 'vue'
+import { gsap } from 'gsap'
 import { useGithubStore } from "@/stores/github";
+
+const titleRef = ref()
 
 useHead({
   title: "Projects – Florian Beaumont • Vue.js & Frontend Portfolio",
@@ -53,6 +57,47 @@ useHead({
 });
 
 const github = useGithubStore();
+
+onMounted(() => {
+  const letters = titleRef.value?.children
+  if (!letters) return
+  
+  Array.from(letters).forEach((letter, index) => {
+    const el = letter as HTMLElement
+    el.addEventListener('mouseenter', () => {
+      const randomRotation = (Math.random() - 0.5) * 900
+      const randomScale = 1.5 + Math.random() * 1.0
+      const randomY = -30 - Math.random() * 40
+      const randomX = (Math.random() - 0.5) * 60
+      
+      gsap.to(el, {
+        rotation: randomRotation,
+        scale: randomScale,
+        y: randomY,
+        x: randomX,
+        color: "#10B981",
+        textShadow: "0 0 30px #10B981, 0 0 60px #10B981",
+        duration: 0.8,
+        ease: "power4.out",
+        transformOrigin: "center center"
+      })
+    })
+    
+    el.addEventListener('mouseleave', () => {
+      gsap.to(el, {
+        rotation: 0,
+        scale: 1,
+        y: 0,
+        x: 0,
+        color: "#ffffff",
+        textShadow: "none",
+        duration: 1.2,
+        ease: "bounce.out",
+        delay: index * 0.15
+      })
+    })
+  })
+})
 </script>
 
 <template>
@@ -64,14 +109,14 @@ const github = useGithubStore();
       Florian Beaumont – Notable Projects in Vue.js &amp; TypeScript
     </h1>
 
-    <h2 class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
-      <span>P</span><span>R</span><span>O</span>
+    <h2 ref="titleRef" class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
+      <span class="cursor-pointer">P</span><span class="cursor-pointer">R</span><span class="cursor-pointer">O</span>
     </h2>
 
     <div class="w-full max-w-3xl xl:mt-0 mt-6">
-      <div v-if="github.loadingRepos" class="text-center py-12">Chargement…</div>
+      <div v-if="github.loadingRepos" class="text-center py-12">Loading…</div>
       <div v-else-if="github.errorRepos" class="text-red-500 text-center py-12">
-        Erreur&nbsp;: {{ github.errorRepos }}
+        Error: {{ github.errorRepos }}
       </div>
       <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div
@@ -84,7 +129,7 @@ const github = useGithubStore();
             :href="repo.html_url"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Aller au dépôt {{ repo.name }} sur GitHub"
+            aria-label="Go to {{ repo.name }} repository on GitHub"
           >
             <h2 class="text-emerald-300 font-semibold text-lg break-words -mt-1 mb-1">{{ repo.name }}</h2>
             <p

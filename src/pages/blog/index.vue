@@ -1,6 +1,56 @@
 <script setup lang="ts">
 import { usePosts } from '@/composables/usePosts'
+import { onMounted, ref } from 'vue'
+import { gsap } from 'gsap'
+
 const posts = usePosts()
+const titleRef = ref()
+
+onMounted(() => {
+  const letters = titleRef.value?.children
+  if (!letters) return
+  
+  Array.from(letters).forEach((letter, index) => {
+    const el = letter as HTMLElement
+    const spans = el.querySelectorAll('span')
+    const targets = spans.length > 0 ? Array.from(spans) : [el]
+    
+    targets.forEach((span, spanIndex) => {
+      span.addEventListener('mouseenter', () => {
+        const randomRotation = (Math.random() - 0.5) * 1080
+        const randomScale = 1.8 + Math.random() * 1.2
+        const randomY = -40 - Math.random() * 50
+        const randomX = (Math.random() - 0.5) * 80
+        
+        gsap.to(span, {
+          rotation: randomRotation,
+          scale: randomScale,
+          y: randomY,
+          x: randomX,
+          color: "#F59E0B",
+          textShadow: "0 0 40px #F59E0B, 0 0 80px #F59E0B",
+          duration: 1,
+          ease: "expo.out",
+          transformOrigin: "center center"
+        })
+      })
+      
+      span.addEventListener('mouseleave', () => {
+        gsap.to(span, {
+          rotation: 0,
+          scale: 1,
+          y: 0,
+          x: 0,
+          color: "#ffffff",
+          textShadow: "none",
+          duration: 1.5,
+          ease: "elastic.out(1, 0.3)",
+          delay: (index + spanIndex) * 0.1
+        })
+      })
+    })
+  })
+})
 </script>
 
 <template>
@@ -12,11 +62,11 @@ const posts = usePosts()
       Florian Beaumont – Technical Blog &amp; Vue.js Learning
     </h1>
 
-    <h2 class="hidden lg:flex flex-col justify-start items-center mr-5 mt-0 pb-0 text-8xl font-bold leading-none select-none">
-      <span>B</span>
-      <span>L</span>
-      <span class="relative">O
-      <span class="absolute top-15 left-11 text-[0.4em]">G</span>
+    <h2 ref="titleRef" class="hidden lg:flex flex-col justify-start items-center mr-5 mt-0 pb-0 text-8xl font-bold leading-none select-none">
+      <span class="cursor-pointer">B</span>
+      <span class="cursor-pointer">L</span>
+      <span class="relative cursor-pointer">O
+        <span class="absolute top-15 left-11 text-[0.4em] cursor-pointer">G</span>
       </span>
     </h2>
 
