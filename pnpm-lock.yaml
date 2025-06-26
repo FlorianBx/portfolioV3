@@ -51,9 +51,6 @@ importers:
       '@vueuse/head':
         specifier: ^2.0.0
         version: 2.0.0(vue@3.5.17(typescript@5.8.3))
-      beasties:
-        specifier: ^0.3.4
-        version: 0.3.4
       front-matter:
         specifier: ^4.0.2
         version: 4.0.2
@@ -81,6 +78,9 @@ importers:
       vite-plugin-beasties:
         specifier: ^0.3.4
         version: 0.3.4
+      vite-plugin-compression2:
+        specifier: ^2.2.0
+        version: 2.2.0(rollup@4.44.0)
       vite-plugin-pages:
         specifier: ^0.33.0
         version: 0.33.0(@vue/compiler-sfc@3.5.17)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))
@@ -92,7 +92,7 @@ importers:
         version: 7.7.7(rollup@4.44.0)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
       vite-ssg:
         specifier: ^27.0.1
-        version: 27.0.1(beasties@0.3.4)(unhead@2.0.11)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
+        version: 27.0.1(unhead@2.0.11)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
       vue-router:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
@@ -1626,6 +1626,9 @@ packages:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
 
+  tar-mini@0.2.0:
+    resolution: {integrity: sha512-+qfUHz700DWnRutdUsxRRVZ38G1Qr27OetwaMYTdg8hcPxf46U0S1Zf76dQMWRBmusOt2ZCK5kbIaiLkoGO7WQ==}
+
   tar@7.4.3:
     resolution: {integrity: sha512-5S7Va8hKfV7W5U6g3aYxXmlPoZVAwUMy9AOKyF2fVuZa2UD3qZjg578OrLRt8PcNN1PleVaL/5/yYATNL0ICUw==}
     engines: {node: '>=18'}
@@ -1710,6 +1713,9 @@ packages:
   vite-plugin-beasties@0.3.4:
     resolution: {integrity: sha512-SD+16Np2nT8i5KSFpBCbkHpuB8MQMaxU+MnEGdLbSsdIQ1X3lUVKDudoti2lU9ws8d9ekWbSpdVmUi52618xJQ==}
     engines: {node: '>=14.0.0'}
+
+  vite-plugin-compression2@2.2.0:
+    resolution: {integrity: sha512-7BZlU2mBHbqoBGy0ARkn3tv/7LC/2h8ewVDpG/cyH8iSzLw6E/yH6P4oBOEvchkQxNpl+B5W6rFR5fdSwfDhMA==}
 
   vite-plugin-inspect@0.8.9:
     resolution: {integrity: sha512-22/8qn+LYonzibb1VeFZmISdVao5kC22jmEKm24vfFE8siEn47EpVcCLYMv6iKOYMJfjSvSJfueOwcFCkUnV3A==}
@@ -3382,6 +3388,8 @@ snapshots:
 
   tapable@2.2.2: {}
 
+  tar-mini@0.2.0: {}
+
   tar@7.4.3:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
@@ -3464,6 +3472,13 @@ snapshots:
     dependencies:
       beasties: 0.3.4
 
+  vite-plugin-compression2@2.2.0(rollup@4.44.0):
+    dependencies:
+      '@rollup/pluginutils': 5.2.0(rollup@4.44.0)
+      tar-mini: 0.2.0
+    transitivePeerDependencies:
+      - rollup
+
   vite-plugin-inspect@0.8.9(rollup@4.44.0)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0)):
     dependencies:
       '@antfu/utils': 0.7.10
@@ -3535,7 +3550,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-ssg@27.0.1(beasties@0.3.4)(unhead@2.0.11)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3)):
+  vite-ssg@27.0.1(unhead@2.0.11)(vite@6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       '@unhead/dom': 2.0.11(unhead@2.0.11)
       '@unhead/vue': 2.0.11(vue@3.5.17(typescript@5.8.3))
@@ -3547,7 +3562,6 @@ snapshots:
       vite: 6.3.5(@types/node@22.15.33)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
-      beasties: 0.3.4
       vue-router: 4.5.1(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - bufferutil

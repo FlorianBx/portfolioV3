@@ -5,21 +5,14 @@ import vue from "@vitejs/plugin-vue";
 // import vueDevTools from "vite-plugin-vue-devtools";
 import Pages from "vite-plugin-pages";
 import tailwindcss from "@tailwindcss/vite";
-import { beasties } from 'vite-plugin-beasties'
+import { compression } from 'vite-plugin-compression2'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue({ include: [/\.vue$/, /\.md$/] }),
     tailwindcss(),
-    beasties({
-      options: {
-        preload: 'swap',
-        pruneSource: true,
-        inlineThreshold: 4000,
-      },
-      filter: path => path.endsWith('.html'),
-    }),
+    compression(),
     Pages({
       dirs: "src/pages",
       extensions: ["vue"],
@@ -40,5 +33,6 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
+    cssCodeSplit: true,
   },
 });
