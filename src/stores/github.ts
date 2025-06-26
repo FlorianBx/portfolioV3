@@ -40,9 +40,6 @@ export const useGithubStore = defineStore('github', () => {
     loadingRepos.value = true
     errorRepos.value = null
     try {
-      const res1 = await fetch('https://api.github.com/users/florianbx/repos?per_page=300')
-      const res2 = await fetch('https://api.github.com/users/florianbx/repos?per_page=300&page=2')
-      let data: Repo[] = [...(await res1.json()), ...(await res2.json())]
       const VALID_REPO = [
         "weba11ylab",
         "nvim_config",
@@ -51,7 +48,13 @@ export const useGithubStore = defineStore('github', () => {
         "ng-croissant",
         "my-little-starter",
       ]
-      repos.value = data.filter(repo => VALID_REPO.includes(repo.name))
+
+      const repoPromises = VALID_REPO.map(name =>
+        fetch(`https://api.github.com/repos/florianbx/${name}`)
+      )
+      const responses = await Promise.all(repoPromises)
+      const data = await Promise.all(responses.map(res => res.json()))
+      repos.value = data
     } catch (err: unknown) {
       if (err instanceof Error) {
         errorRepos.value = err.message

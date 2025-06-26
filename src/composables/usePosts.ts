@@ -15,7 +15,13 @@ type Post = {
   html: string
 }
 
+let cachedPosts: Post[] | null = null
+
 export function usePosts(): Post[] {
+  if (cachedPosts) {
+    return cachedPosts
+  }
+
   const modules = import.meta.glob('../posts/*.md', {
     eager: true,
     import: 'default',
@@ -41,7 +47,10 @@ export function usePosts(): Post[] {
     })
   }
 
-  return posts.sort((a, b) =>
+  const sortedPosts = posts.sort((a, b) =>
     a.frontmatter.date < b.frontmatter.date ? 1 : -1
   )
+
+  cachedPosts = sortedPosts
+  return sortedPosts
 }
