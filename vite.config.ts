@@ -6,7 +6,6 @@ import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import tailwindcss from "@tailwindcss/vite";
 import { compression } from 'vite-plugin-compression2'
-import { beasties } from 'vite-plugin-beasties'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,7 +13,6 @@ export default defineConfig({
     vue({ include: [/\.vue$/, /\.md$/] }),
     tailwindcss(),
     compression(),
-    beasties(),
     Pages({
       dirs: "src/pages",
       extensions: ["vue"],
@@ -36,5 +34,9 @@ export default defineConfig({
   build: {
     sourcemap: true,
     cssCodeSplit: true,
+  },
+  // @ts-ignore
+  ssgOptions: {
+    criticalCSS: false,
   },
 });

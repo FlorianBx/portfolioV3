@@ -2,8 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
+  /* Critical CSS for immediate render */
   html, body {
     @apply bg-(--color-black) text-(--color-white);
+    font-family: var(--font-sans);
+  }
+  
+  /* Critical layout to prevent CLS */
+  .container {
+    @apply mx-auto px-4;
+  }
+  
+  /* Critical text styles */
+  h1, h2, h3 {
+    @apply font-bold;
+  }
+  
+  /* Critical link styles */
+  a {
+    @apply text-(--color-teal-400) hover:text-(--color-teal-300);
   }
 }
 
