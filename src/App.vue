@@ -95,7 +95,17 @@ const transitionPage = computed(() => "page");
 </script>
 
 <template>
-  <div class="bg-black text-white min-h-screen">
+  <div class="bg-black text-white min-h-screen relative overflow-hidden">
+    <!-- Background effects container -->
+    <div class="fixed inset-0 pointer-events-none">
+      <!-- Subtle texture overlay -->
+      <div class="absolute inset-0 opacity-30 bg-noise"></div>
+      
+      <!-- Animated light orbs -->
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float-slow"></div>
+      <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-teal-400/15 rounded-full blur-2xl animate-float-delayed"></div>
+      <div class="absolute bottom-1/4 left-1/3 w-80 h-80 bg-emerald-300/8 rounded-full blur-3xl animate-float-reverse"></div>
+    </div>
     <div class="p-4 min-h-(--screen-minus-nav)">
       <header class="flex justify-end">
         <a href="#main" class="skip-link">Skip to main content</a>
