@@ -55,7 +55,7 @@ onMounted(() => {
 
 <template>
   <section
-    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 scale-90 md:px-12 py-10 max-w-screen-xl mx-auto"
+    class="flex flex-col lg:flex-row gap-4 sm:gap-8 xl:gap-32 items-start px-2 xs:px-4 sm:px-8 md:px-12 py-6 sm:py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
     <h1 id="section-title-unique" class="sr-only text-2xl">
@@ -70,17 +70,17 @@ onMounted(() => {
       </span>
     </h2>
 
-    <ul class="w-full max-w-2xl prose prose-li:mb-0 prose-li:mt-0 dark:prose-invert xl:mt-0 mt-6">
+    <ul class="w-full max-w-2xl prose prose-li:mb-0 prose-li:mt-0 dark:prose-invert xl:mt-0 mt-4 sm:mt-6">
       <li
         v-for="post in posts"
         :key="post.slug"
-        class="py-3 text-lg md:text-xl rounded"
+        class="py-2 sm:py-3 text-base sm:text-lg md:text-xl rounded"
       >
         <router-link
           :to="`/blog/${post.slug}`"
-          class="flex flex-col xl:flex-ro transition-all hover:no-underline xl:items-start justify-between gap-2 xl:gap-4 underline underline-offset-6 leading-8"
+          class="flex flex-col xl:flex-ro transition-all hover:no-underline xl:items-start justify-between gap-2 xl:gap-4 underline underline-offset-4 sm:underline-offset-6 leading-6 sm:leading-8"
         >
-          <span class="font-medium break-words transition-colors hover:text-bold">{{ post.frontmatter.title }}</span>
+          <span class="font-medium break-words transition-colors hover:text-bold text-sm sm:text-base md:text-lg">{{ post.frontmatter.title }}</span>
         </router-link>
       </li>
     </ul>

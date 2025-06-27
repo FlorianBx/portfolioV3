@@ -164,7 +164,7 @@ onMounted(() => {
     </h2>
 
 <div class="w-full max-w-2xl xl:mt-0 mt-4">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-j items-center">
     <div ref="textRef" class="text-white font-sans text-base leading-normal max-w-md order-2 lg:order-1">
       <p>
         Hi I'm <span class="text-lg font-bold">Florian</span>
@@ -177,7 +177,7 @@ onMounted(() => {
         </span><br /><br />
         I spend my time exploring
         <span class="text-sky-400 text-lg font-bold hover-glow cursor-pointer">
-          OPEN SOURCE
+              <a href="https://github.com/FlorianBx" target="_blank">OPEN SOURCE</a>
         </span>
         <span aria-hidden="true" role="img">🌱</span>, building fun stuff, and always learning something new.<br /><br />
         I also like experimenting with ideas — building tools and libraries
