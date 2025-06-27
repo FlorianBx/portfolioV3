@@ -97,12 +97,159 @@ onMounted(() => {
       })
     })
   })
+  
+  const cards = document.querySelectorAll('.project-card')
+  
+  cards.forEach((card) => {
+    const element = card as HTMLElement
+    
+    
+    const particles = []
+    for (let i = 0; i < 12; i++) {
+      const particle = document.createElement('div')
+      particle.style.cssText = `
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #2DD4BF;
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        will-change: transform, opacity;
+        box-shadow: 0 0 4px #2DD4BF;
+      `
+      element.appendChild(particle)
+      particles.push(particle)
+    }
+    
+    const borderGlow = document.createElement('div')
+    borderGlow.style.cssText = `
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, 
+        transparent,
+        rgba(45, 212, 191, 0.4),
+        transparent,
+        rgba(16, 185, 129, 0.3),
+        transparent);
+      background-size: 300% 300%;
+      border-radius: inherit;
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+      z-index: -1;
+    `
+    element.appendChild(borderGlow)
+    
+    element.addEventListener('mouseenter', () => {
+      gsap.set(element, { willChange: 'transform' })
+      
+      gsap.to(element, {
+        scale: 1.03,
+        rotationY: 3,
+        rotationX: 1,
+        duration: 0.5,
+        ease: "power3.out"
+      })
+      
+      
+      gsap.to(borderGlow, {
+        opacity: 1,
+        backgroundPosition: '100% 100%',
+        duration: 2,
+        ease: "none",
+        repeat: -1,
+        yoyo: true
+      })
+      
+      particles.forEach((particle, i) => {
+        const angle = (i / particles.length) * Math.PI * 2
+        const radius = 80 + Math.random() * 40
+        const endX = Math.cos(angle) * radius
+        const endY = Math.sin(angle) * radius
+        
+        gsap.set(particle, {
+          left: '50%',
+          top: '50%',
+          x: 0,
+          y: 0,
+          opacity: 0
+        })
+        
+        gsap.to(particle, {
+          x: endX,
+          y: endY,
+          opacity: 1,
+          duration: 0.8,
+          delay: 0.3 + i * 0.05,
+          ease: "power2.out"
+        })
+        
+        gsap.to(particle, {
+          opacity: 0,
+          scale: 0,
+          duration: 0.5,
+          delay: 1.2 + i * 0.05,
+          ease: "power2.in"
+        })
+      })
+      
+      const title = element.querySelector('h2')
+      if (title) {
+        gsap.to(title, {
+          color: "#F0FDF4",
+          textShadow: "0 0 8px rgba(45, 212, 191, 0.5)",
+          duration: 0.4,
+          ease: "power2.out"
+        })
+      }
+    })
+    
+    element.addEventListener('mouseleave', () => {
+      gsap.killTweensOf([element, borderGlow, ...particles])
+      
+      gsap.to(element, {
+        scale: 1,
+        rotationY: 0,
+        rotationX: 0,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.6)",
+        onComplete: () => {
+          gsap.set(element, { willChange: 'auto' })
+        }
+      })
+      
+      gsap.to(borderGlow, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      })
+      
+      particles.forEach((particle) => {
+        gsap.to(particle, {
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        })
+      })
+      
+      const title = element.querySelector('h2')
+      if (title) {
+        gsap.to(title, {
+          color: "#6EE7B7",
+          textShadow: "none",
+          duration: 0.6,
+          ease: "power2.out"
+        })
+      }
+    })
+  })
 })
 </script>
 
 <template>
   <section
-    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 scale-90 md:px-12 py-10 max-w-screen-xl mx-auto"
+    class="flex flex-col lg:flex-row gap-8 xl:gap-32 items-start px-4 sm:px-8 scale-90 md:px-12 md:py-10 max-w-screen-xl mx-auto"
     aria-labelledby="section-title-unique"
   >
     <h1 id="section-title-unique" class="sr-only text-2xl">
@@ -122,7 +269,7 @@ onMounted(() => {
         <div
           v-for="repo in github.repos"
           :key="repo.id"
-          class="border border-stone-400 rounded bg-black hover:bg-emerald-900 transition-colors p-0 h-full flex flex-col"
+          class="project-card border border-stone-400 rounded bg-black p-0 h-full flex flex-col overflow-hidden"
         >
           <a
             class="flex flex-col justify-between p-5 h-full min-h-[11rem]"
