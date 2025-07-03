@@ -183,9 +183,9 @@ onMounted(() => {
         I also like experimenting with ideas — building tools and libraries
         across different languages, just to see where they lead.<br /><br />
         If you want to chat, come say hi at a
-        <span class="text-white text-xl font-bold hover-glow cursor-pointer">
+        <a href="https://www.meetup.com/fr-FR/vuejs-paris/" target="_blank" class="text-white text-xl font-bold hover-glow cursor-pointer">
           Vuejs Paris
-        </span>
+        </a>
         meetup or
         <a
           href="https://cal.com/fbeaumont/30min"
@@ -195,7 +195,7 @@ onMounted(() => {
         >book a call</a>.
       </p>
     </div>
-    <div class="flex justify-center items-center order-1 lg:order-2">
+    <div class="flex justify-center items-center ml-10 order-1 lg:order-2">
       <img
         ref="imageRef"
         src="/images/medium-avatar.avif"
