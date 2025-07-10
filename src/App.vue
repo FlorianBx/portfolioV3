@@ -6,7 +6,7 @@ import GithubIcon from "@/components/GithubIcon.vue";
 import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
 import { computed, onMounted, ref } from "vue";
-import { gsap } from 'gsap';
+import { motion } from 'motion-v';
 
 useHead({
   title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
@@ -86,62 +86,16 @@ useHead({
 });
 
 const hasMounted = ref(false);
+const mousePosition = ref({ x: 0, y: 0 });
 
 onMounted(() => {
   hasMounted.value = true;
   
-  const orbs = document.querySelectorAll('.bg-orb');
-  
-  gsap.set(orbs, { transformOrigin: "center center" });
-  
-  gsap.to(orbs[0], {
-    rotation: 360,
-    duration: 50,
-    repeat: -1,
-    ease: "none"
-  });
-  
-  gsap.to(orbs[1], {
-    rotation: -360,
-    duration: 40,
-    repeat: -1,
-    ease: "none"
-  });
-  
-  gsap.to(orbs[2], {
-    rotation: 360,
-    duration: 60,
-    repeat: -1,
-    ease: "none"
-  });
-  
   const handleMouseMove = (e: MouseEvent) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
-    
-    gsap.to(orbs[0], {
-      x: x * 60,
-      y: y * 60,
-      scale: 1 + Math.abs(x) * 0.2,
-      duration: 1.5,
-      ease: "power3.out"
-    });
-    
-    gsap.to(orbs[1], {
-      x: x * 40,
-      y: y * 40,
-      scale: 1 + Math.abs(y) * 0.15,
-      duration: 1.8,
-      ease: "power3.out"
-    });
-    
-    gsap.to(orbs[2], {
-      x: x * 50,
-      y: y * 50,
-      scale: 1 + Math.abs(x + y) * 0.1,
-      duration: 1.6,
-      ease: "power3.out"
-    });
+    mousePosition.value = {
+      x: (e.clientX / window.innerWidth - 0.5) * 2,
+      y: (e.clientY / window.innerHeight - 0.5) * 2,
+    };
   };
   
   document.addEventListener('mousemove', handleMouseMove);
@@ -159,9 +113,51 @@ const transitionPage = computed(() => "page");
       <div class="absolute inset-0 opacity-30 bg-noise"></div>
       
       <!-- Animated light orbs with parallax -->
-      <div class="bg-orb absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-float-slow transition-transform duration-100 ease-out orb-emerald-1"></div>
-      <div class="bg-orb absolute top-3/4 right-1/4 w-64 h-64 rounded-full blur-2xl animate-float-delayed transition-transform duration-150 ease-out orb-teal-1"></div>
-      <div class="bg-orb absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl animate-float-reverse transition-transform duration-200 ease-out orb-emerald-2"></div>
+      <motion.div 
+        class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl orb-emerald-1"
+        :animate="{
+          rotate: 360,
+          x: mousePosition.x * 60,
+          y: mousePosition.y * 60,
+          scale: 1 + Math.abs(mousePosition.x) * 0.2,
+        }"
+        :transition="{ 
+          rotate: { duration: 50, repeat: Infinity, ease: 'linear' },
+          x: { duration: 1.5, ease: 'circOut' },
+          y: { duration: 1.5, ease: 'circOut' },
+          scale: { duration: 1.5, ease: 'circOut' }
+        }"
+      />
+      <motion.div 
+        class="absolute top-3/4 right-1/4 w-64 h-64 rounded-full blur-2xl orb-teal-1"
+        :animate="{
+          rotate: -360,
+          x: mousePosition.x * 40,
+          y: mousePosition.y * 40,
+          scale: 1 + Math.abs(mousePosition.y) * 0.15,
+        }"
+        :transition="{ 
+          rotate: { duration: 40, repeat: Infinity, ease: 'linear' },
+          x: { duration: 1.8, ease: 'circOut' },
+          y: { duration: 1.8, ease: 'circOut' },
+          scale: { duration: 1.8, ease: 'circOut' }
+        }"
+      />
+      <motion.div 
+        class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl orb-emerald-2"
+        :animate="{
+          rotate: 360,
+          x: mousePosition.x * 50,
+          y: mousePosition.y * 50,
+          scale: 1 + Math.abs(mousePosition.x + mousePosition.y) * 0.1,
+        }"
+        :transition="{ 
+          rotate: { duration: 60, repeat: Infinity, ease: 'linear' },
+          x: { duration: 1.6, ease: 'circOut' },
+          y: { duration: 1.6, ease: 'circOut' },
+          scale: { duration: 1.6, ease: 'circOut' }
+        }"
+      />
     </div>
     <div class="p-4 min-h-(--screen-minus-nav)">
       <header class="flex justify-end">

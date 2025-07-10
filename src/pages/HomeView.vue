@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
 import { onMounted, ref } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'motion-v'
 import Contributions from "@/components/Contributions.vue";
 import { useGithubStore } from '@/stores/github';
 
-gsap.registerPlugin(ScrollTrigger);
 
 useHead({
   title: "Florian Beaumont – Frontend Developer • Vue.js & TypeScript Specialist",
@@ -61,89 +59,49 @@ const titleRef = ref()
 const textRef = ref()
 const imageRef = ref()
 
+const letterStates = ref<Record<string, { rotation: number, scale: number, y: number, color: string, textShadow: string }>>({})
+
 onMounted(() => {
-  const handleMouseMove = (e: MouseEvent) => {
-    const imageRect = imageRef.value?.getBoundingClientRect()
-    if (!imageRect) return
-    
-    const imageCenterX = imageRect.left + imageRect.width / 2
-    const imageCenterY = imageRect.top + imageRect.height / 2
-    
-    const distance = Math.sqrt(
-      Math.pow(e.clientX - imageCenterX, 2) + Math.pow(e.clientY - imageCenterY, 2)
-    )
-    
-    const attractionZone = 350
-    const maxAttraction = 80
-    
-    if (distance < attractionZone) {
-      const strength = Math.max(0, 1 - distance / attractionZone)
-      const deltaX = (e.clientX - imageCenterX) * strength * 0.3
-      const deltaY = (e.clientY - imageCenterY) * strength * 0.3
+  
+  const titleEl = titleRef.value?.$el || titleRef.value
+  const letters = titleEl?.children
+  if (letters) {
+    Array.from(letters).forEach((letter, index) => {
+      const el = letter as HTMLElement
+      const letterId = `letter-${index}`
       
-      gsap.to(imageRef.value, {
-        x: Math.min(Math.max(deltaX, -maxAttraction), maxAttraction),
-        y: Math.min(Math.max(deltaY, -maxAttraction), maxAttraction),
-        duration: 0.4,
-        ease: "power2.out"
-      })
-    } else {
-      gsap.to(imageRef.value, {
-        x: 0,
-        y: 0,
-        duration: 1.2,
-        ease: "elastic.out(1, 0.6)"
-      })
-    }
-  }
-  
-  const handleMouseLeave = () => {
-    gsap.to(imageRef.value, {
-      x: 0,
-      y: 0,
-      duration: 1.2,
-      ease: "power3.out"
-    })
-  }
-  
-  const letters = titleRef.value?.children
-  if (!letters) return
-  
-  Array.from(letters).forEach((letter, index) => {
-    const el = letter as HTMLElement
-    el.addEventListener('mouseenter', () => {
-      const randomRotation = (Math.random() - 0.5) * 720
-      const randomScale = 1.2 + Math.random() * 0.8
-      const randomY = -20 - Math.random() * 30
-      
-      gsap.to(el, {
-        rotation: randomRotation,
-        scale: randomScale,
-        y: randomY,
-        color: "#2DD4BF",
-        textShadow: "0 0 20px #2DD4BF, 0 0 40px #2DD4BF",
-        duration: 0.6,
-        ease: "back.out(2)",
-        transformOrigin: "center center"
-      })
-    })
-    
-    el.addEventListener('mouseleave', () => {
-      gsap.to(el, {
+      // Initialize letter state
+      letterStates.value[letterId] = {
         rotation: 0,
         scale: 1,
         y: 0,
         color: "#ffffff",
-        textShadow: "none",
-        duration: 1,
-        ease: "elastic.out(1, 0.5)",
-        delay: index * 0.1
+        textShadow: "none"
+      }
+      
+      el.addEventListener('mouseenter', () => {
+        letterStates.value[letterId] = {
+          rotation: (Math.random() - 0.5) * 720,
+          scale: 1.2 + Math.random() * 0.8,
+          y: -20 - Math.random() * 30,
+          color: "#2DD4BF",
+          textShadow: "0 0 20px #2DD4BF, 0 0 40px #2DD4BF"
+        }
+      })
+      
+      el.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          letterStates.value[letterId] = {
+            rotation: 0,
+            scale: 1,
+            y: 0,
+            color: "#ffffff",
+            textShadow: "none"
+          }
+        }, index * 100)
       })
     })
-  })
-  
-  document.addEventListener('mousemove', handleMouseMove)
-  sectionRef.value?.addEventListener('mouseleave', handleMouseLeave)
+  }
 })
 </script>
 
@@ -158,9 +116,21 @@ onMounted(() => {
     </h1>
 
     <h2 ref="titleRef" class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
-      <span class="hover:text-emerald-400 transition-colors duration-300">D</span>
-      <span class="hover:text-emerald-400 transition-colors duration-300">E</span>
-      <span class="hover:text-emerald-400 transition-colors duration-300">V</span>
+      <motion.span 
+        class="hover:text-emerald-400 transition-colors duration-300"
+        :animate="letterStates['letter-0'] || {}"
+        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+      >D</motion.span>
+      <motion.span 
+        class="hover:text-emerald-400 transition-colors duration-300"
+        :animate="letterStates['letter-1'] || {}"
+        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+      >E</motion.span>
+      <motion.span 
+        class="hover:text-emerald-400 transition-colors duration-300"
+        :animate="letterStates['letter-2'] || {}"
+        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+      >V</motion.span>
     </h2>
 
 <div class="w-full max-w-2xl xl:mt-0 mt-4">

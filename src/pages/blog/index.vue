@@ -1,55 +1,60 @@
 <script setup lang="ts">
 import { usePosts } from '@/composables/usePosts'
 import { onMounted, ref } from 'vue'
-import { gsap } from 'gsap'
+import { motion } from 'motion-v'
 
 const posts = usePosts()
 const titleRef = ref()
+const letterStates = ref<Record<string, { rotation: number, scale: number, y: number, x: number, color: string, textShadow: string }>>({})
 
 onMounted(() => {
-  const letters = titleRef.value?.children
-  if (!letters) return
-  
-  Array.from(letters).forEach((letter, index) => {
-    const el = letter as HTMLElement
-    const spans = el.querySelectorAll('span')
-    const targets = spans.length > 0 ? Array.from(spans) : [el]
-    
-    targets.forEach((span, spanIndex) => {
-      span.addEventListener('mouseenter', () => {
-        const randomRotation = (Math.random() - 0.5) * 1080
-        const randomScale = 1.8 + Math.random() * 1.2
-        const randomY = -40 - Math.random() * 50
-        const randomX = (Math.random() - 0.5) * 80
-        
-        gsap.to(span, {
-          rotation: randomRotation,
-          scale: randomScale,
-          y: randomY,
-          x: randomX,
-          color: "#F59E0B",
-          textShadow: "0 0 40px #F59E0B, 0 0 80px #F59E0B",
-          duration: 1,
-          ease: "expo.out",
-          transformOrigin: "center center"
-        })
-      })
+  const titleEl = titleRef.value?.$el || titleRef.value
+  const letters = titleEl?.children
+  if (letters) {
+    Array.from(letters).forEach((letter, index) => {
+      const el = letter as HTMLElement
+      const spans = el.querySelectorAll('span')
+      const targets = spans.length > 0 ? Array.from(spans) : [el]
       
-      span.addEventListener('mouseleave', () => {
-        gsap.to(span, {
+      targets.forEach((span, spanIndex) => {
+        const letterId = `letter-${index}-${spanIndex}`
+        
+        // Initialize letter state
+        letterStates.value[letterId] = {
           rotation: 0,
           scale: 1,
           y: 0,
           x: 0,
           color: "#ffffff",
-          textShadow: "none",
-          duration: 1.5,
-          ease: "elastic.out(1, 0.3)",
-          delay: (index + spanIndex) * 0.1
+          textShadow: "none"
+        }
+        
+        span.addEventListener('mouseenter', () => {
+          letterStates.value[letterId] = {
+            rotation: (Math.random() - 0.5) * 1080,
+            scale: 1.8 + Math.random() * 1.2,
+            y: -40 - Math.random() * 50,
+            x: (Math.random() - 0.5) * 80,
+            color: "#F59E0B",
+            textShadow: "0 0 40px #F59E0B, 0 0 80px #F59E0B"
+          }
+        })
+        
+        span.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            letterStates.value[letterId] = {
+              rotation: 0,
+              scale: 1,
+              y: 0,
+              x: 0,
+              color: "#ffffff",
+              textShadow: "none"
+            }
+          }, (index + spanIndex) * 100)
         })
       })
     })
-  })
+  }
 })
 </script>
 
@@ -63,11 +68,27 @@ onMounted(() => {
     </h1>
 
     <h2 ref="titleRef" class="hidden lg:flex flex-col justify-start items-center mr-5 mt-0 pb-0 text-8xl font-bold leading-none select-none">
-      <span class="cursor-pointer">B</span>
-      <span class="cursor-pointer">L</span>
-      <span class="relative cursor-pointer">O
-        <span class="absolute top-15 left-11 text-[0.4em] cursor-pointer">G</span>
-      </span>
+      <motion.span 
+        class="cursor-pointer"
+        :animate="letterStates['letter-0-0'] || {}"
+        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+      >B</motion.span>
+      <motion.span 
+        class="cursor-pointer"
+        :animate="letterStates['letter-1-0'] || {}"
+        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+      >L</motion.span>
+      <motion.span 
+        class="relative cursor-pointer"
+        :animate="letterStates['letter-2-0'] || {}"
+        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+      >O
+        <motion.span 
+          class="absolute top-15 left-11 text-[0.4em] cursor-pointer"
+          :animate="letterStates['letter-2-1'] || {}"
+          :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+        >G</motion.span>
+      </motion.span>
     </h2>
 
     <ul class="w-full max-w-2xl prose prose-li:mb-0 prose-li:mt-0 dark:prose-invert xl:mt-0 mt-4 sm:mt-6">
