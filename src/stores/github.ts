@@ -44,7 +44,7 @@ export const useGithubStore = defineStore('github', () => {
         "weba11ylab",
         "nvim_config",
         "Rise-of-Knowledges",
-        "docker-dev-environment",
+        "flbx-colorscheme",
         "ng-croissant",
         "my-little-starter",
       ]
