@@ -1,60 +1,19 @@
 <script setup lang="ts">
 import { usePosts } from '@/composables/usePosts'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { motion } from 'motion-v'
+import { useLetterAnimation } from '@/composables/useLetterAnimation'
 
 const posts = usePosts()
 const titleRef = ref()
-const letterStates = ref<Record<string, { rotation: number, scale: number, y: number, x: number, color: string, textShadow: string }>>({})
-
-onMounted(() => {
-  const titleEl = titleRef.value?.$el || titleRef.value
-  const letters = titleEl?.children
-  if (letters) {
-    Array.from(letters).forEach((letter, index) => {
-      const el = letter as HTMLElement
-      const spans = el.querySelectorAll('span')
-      const targets = spans.length > 0 ? Array.from(spans) : [el]
-      
-      targets.forEach((span, spanIndex) => {
-        const letterId = `letter-${index}-${spanIndex}`
-        
-        // Initialize letter state
-        letterStates.value[letterId] = {
-          rotation: 0,
-          scale: 1,
-          y: 0,
-          x: 0,
-          color: "#ffffff",
-          textShadow: "none"
-        }
-        
-        span.addEventListener('mouseenter', () => {
-          letterStates.value[letterId] = {
-            rotation: (Math.random() - 0.5) * 1080,
-            scale: 1.8 + Math.random() * 1.2,
-            y: -40 - Math.random() * 50,
-            x: (Math.random() - 0.5) * 80,
-            color: "#F59E0B",
-            textShadow: "0 0 40px #F59E0B, 0 0 80px #F59E0B"
-          }
-        })
-        
-        span.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            letterStates.value[letterId] = {
-              rotation: 0,
-              scale: 1,
-              y: 0,
-              x: 0,
-              color: "#ffffff",
-              textShadow: "none"
-            }
-          }, (index + spanIndex) * 100)
-        })
-      })
-    })
-  }
+const { letterStates, getTransition } = useLetterAnimation(titleRef, {
+  hoverColor: '#F59E0B',
+  glowColor: '#F59E0B',
+  maxRotation: 1080,
+  maxScale: 3.0,
+  maxY: 90,
+  maxX: 80,
+  resetDelay: 100
 })
 </script>
 
@@ -71,22 +30,22 @@ onMounted(() => {
       <motion.span 
         class="cursor-pointer"
         :animate="letterStates['letter-0-0'] || {}"
-        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+        :transition="getTransition()"
       >B</motion.span>
       <motion.span 
         class="cursor-pointer"
         :animate="letterStates['letter-1-0'] || {}"
-        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+        :transition="getTransition()"
       >L</motion.span>
       <motion.span 
         class="relative cursor-pointer"
         :animate="letterStates['letter-2-0'] || {}"
-        :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+        :transition="getTransition()"
       >O
         <motion.span 
           class="absolute top-15 left-11 text-[0.4em] cursor-pointer"
           :animate="letterStates['letter-2-1'] || {}"
-          :transition="{ type: 'spring', stiffness: 120, damping: 10 }"
+          :transition="getTransition()"
         >G</motion.span>
       </motion.span>
     </h2>

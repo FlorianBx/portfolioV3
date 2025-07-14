@@ -7,6 +7,7 @@ import LinkedinIcon from "@/components/LinkedinIcon.vue";
 import MyWorkIcon from "@/components/MyWorkIcon.vue";
 import { computed, onMounted, ref } from "vue";
 import { motion } from 'motion-v';
+import { useMotionConfig } from '@/composables/useMotionConfig';
 
 useHead({
   title: "Florian Beaumont – Frontend Developer, Vue 3 & TypeScript Specialist",
@@ -87,6 +88,7 @@ useHead({
 
 const hasMounted = ref(false);
 const mousePosition = ref({ x: 0, y: 0 });
+const { getAnimation, getTransition } = useMotionConfig();
 
 onMounted(() => {
   hasMounted.value = true;
@@ -115,48 +117,33 @@ const transitionPage = computed(() => "page");
       <!-- Animated light orbs with parallax -->
       <motion.div 
         class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl orb-emerald-1"
-        :animate="{
+        :animate="getAnimation({
           rotate: 360,
           x: mousePosition.x * 60,
           y: mousePosition.y * 60,
           scale: 1 + Math.abs(mousePosition.x) * 0.2,
-        }"
-        :transition="{ 
-          rotate: { duration: 50, repeat: Infinity, ease: 'linear' },
-          x: { duration: 1.5, ease: 'circOut' },
-          y: { duration: 1.5, ease: 'circOut' },
-          scale: { duration: 1.5, ease: 'circOut' }
-        }"
+        })"
+        :transition="getTransition('orb')"
       />
       <motion.div 
         class="absolute top-3/4 right-1/4 w-64 h-64 rounded-full blur-2xl orb-teal-1"
-        :animate="{
+        :animate="getAnimation({
           rotate: -360,
           x: mousePosition.x * 40,
           y: mousePosition.y * 40,
           scale: 1 + Math.abs(mousePosition.y) * 0.15,
-        }"
-        :transition="{ 
-          rotate: { duration: 40, repeat: Infinity, ease: 'linear' },
-          x: { duration: 1.8, ease: 'circOut' },
-          y: { duration: 1.8, ease: 'circOut' },
-          scale: { duration: 1.8, ease: 'circOut' }
-        }"
+        })"
+        :transition="getTransition('orb')"
       />
       <motion.div 
         class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl orb-emerald-2"
-        :animate="{
+        :animate="getAnimation({
           rotate: 360,
           x: mousePosition.x * 50,
           y: mousePosition.y * 50,
           scale: 1 + Math.abs(mousePosition.x + mousePosition.y) * 0.1,
-        }"
-        :transition="{ 
-          rotate: { duration: 60, repeat: Infinity, ease: 'linear' },
-          x: { duration: 1.6, ease: 'circOut' },
-          y: { duration: 1.6, ease: 'circOut' },
-          scale: { duration: 1.6, ease: 'circOut' }
-        }"
+        })"
+        :transition="getTransition('orb')"
       />
     </div>
     <div class="p-4 min-h-(--screen-minus-nav)">

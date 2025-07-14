@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { motion } from 'motion-v'
 import { useGithubStore } from "@/stores/github";
+import { useLetterAnimation } from '@/composables/useLetterAnimation';
+import { useCardAnimation } from '@/composables/useCardAnimation';
 
 const titleRef = ref()
-const letterStates = ref<Record<string, { rotation: number, scale: number, y: number, x: number, color: string, textShadow: string }>>({})
-const cardStates = ref<Record<string, { scale: number, rotationY: number, rotationX: number, borderOpacity: number }>>({})
+const { letterStates, getTransition: getLetterTransition } = useLetterAnimation(titleRef, {
+  hoverColor: '#10B981',
+  glowColor: '#10B981',
+  maxRotation: 900,
+  maxScale: 1.5,
+  maxY: 70,
+  maxX: 60,
+  resetDelay: 150
+})
+const { cardStates, getTransition: getCardTransition } = useCardAnimation()
 
 useHead({
   title: "Projects – Florian Beaumont • Vue.js & Frontend Portfolio",
@@ -60,83 +70,6 @@ useHead({
 
 const github = useGithubStore();
 
-onMounted(() => {
-  const titleEl = titleRef.value?.$el || titleRef.value
-  const letters = titleEl?.children
-  if (letters) {
-    Array.from(letters).forEach((letter, index) => {
-      const el = letter as HTMLElement
-      const letterId = `letter-${index}`
-      
-      // Initialize letter state
-      letterStates.value[letterId] = {
-        rotation: 0,
-        scale: 1,
-        y: 0,
-        x: 0,
-        color: "#ffffff",
-        textShadow: "none"
-      }
-      
-      el.addEventListener('mouseenter', () => {
-        letterStates.value[letterId] = {
-          rotation: (Math.random() - 0.5) * 900,
-          scale: 1.5 + Math.random() * 1.0,
-          y: -30 - Math.random() * 40,
-          x: (Math.random() - 0.5) * 60,
-          color: "#10B981",
-          textShadow: "0 0 30px #10B981, 0 0 60px #10B981"
-        }
-      })
-      
-      el.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-          letterStates.value[letterId] = {
-            rotation: 0,
-            scale: 1,
-            y: 0,
-            x: 0,
-            color: "#ffffff",
-            textShadow: "none"
-          }
-        }, index * 150)
-      })
-    })
-  }
-  
-  const cards = document.querySelectorAll('.project-card')
-  
-  cards.forEach((card, cardIndex) => {
-    const element = card as HTMLElement
-    const cardId = `card-${cardIndex}`
-    
-    // Initialize card state
-    cardStates.value[cardId] = {
-      scale: 1,
-      rotationY: 0,
-      rotationX: 0,
-      borderOpacity: 0
-    }
-    
-    element.addEventListener('mouseenter', () => {
-      cardStates.value[cardId] = {
-        scale: 1.03,
-        rotationY: 3,
-        rotationX: 1,
-        borderOpacity: 1
-      }
-    })
-    
-    element.addEventListener('mouseleave', () => {
-      cardStates.value[cardId] = {
-        scale: 1,
-        rotationY: 0,
-        rotationX: 0,
-        borderOpacity: 0
-      }
-    })
-  })
-})
 </script>
 
 <template>
@@ -152,17 +85,17 @@ onMounted(() => {
       <motion.span 
         class="cursor-pointer"
         :animate="letterStates['letter-0'] || {}"
-        :transition="{ type: 'spring', stiffness: 150, damping: 15 }"
+        :transition="getLetterTransition()"
       >P</motion.span>
       <motion.span 
         class="cursor-pointer"
         :animate="letterStates['letter-1'] || {}"
-        :transition="{ type: 'spring', stiffness: 150, damping: 15 }"
+        :transition="getLetterTransition()"
       >R</motion.span>
       <motion.span 
         class="cursor-pointer"
         :animate="letterStates['letter-2'] || {}"
-        :transition="{ type: 'spring', stiffness: 150, damping: 15 }"
+        :transition="getLetterTransition()"
       >O</motion.span>
     </h2>
 
@@ -177,7 +110,7 @@ onMounted(() => {
           :key="repo.id"
           class="project-card border border-stone-400 rounded bg-black p-0 h-full flex flex-col overflow-hidden relative"
           :animate="cardStates[`card-${index}`] || {}"
-          :transition="{ type: 'spring', stiffness: 120, damping: 12 }"
+          :transition="getCardTransition()"
         >
           <a
             class="flex flex-col justify-between p-5 h-full min-h-[11rem]"

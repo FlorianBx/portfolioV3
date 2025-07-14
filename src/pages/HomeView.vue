@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { motion } from 'motion-v'
 import Contributions from "@/components/Contributions.vue";
 import { useGithubStore } from '@/stores/github';
+import { useLetterAnimation } from '@/composables/useLetterAnimation';
 
 
 useHead({
@@ -54,54 +55,14 @@ useHead({
 
 const githubStore = useGithubStore()
 
-const sectionRef = ref()
 const titleRef = ref()
-const textRef = ref()
-const imageRef = ref()
-
-const letterStates = ref<Record<string, { rotation: number, scale: number, y: number, color: string, textShadow: string }>>({})
-
-onMounted(() => {
-  
-  const titleEl = titleRef.value?.$el || titleRef.value
-  const letters = titleEl?.children
-  if (letters) {
-    Array.from(letters).forEach((letter, index) => {
-      const el = letter as HTMLElement
-      const letterId = `letter-${index}`
-      
-      // Initialize letter state
-      letterStates.value[letterId] = {
-        rotation: 0,
-        scale: 1,
-        y: 0,
-        color: "#ffffff",
-        textShadow: "none"
-      }
-      
-      el.addEventListener('mouseenter', () => {
-        letterStates.value[letterId] = {
-          rotation: (Math.random() - 0.5) * 720,
-          scale: 1.2 + Math.random() * 0.8,
-          y: -20 - Math.random() * 30,
-          color: "#2DD4BF",
-          textShadow: "0 0 20px #2DD4BF, 0 0 40px #2DD4BF"
-        }
-      })
-      
-      el.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-          letterStates.value[letterId] = {
-            rotation: 0,
-            scale: 1,
-            y: 0,
-            color: "#ffffff",
-            textShadow: "none"
-          }
-        }, index * 100)
-      })
-    })
-  }
+const { letterStates, getTransition } = useLetterAnimation(titleRef, {
+  hoverColor: '#2DD4BF',
+  glowColor: '#2DD4BF',
+  maxRotation: 720,
+  maxScale: 0.8,
+  maxY: 50,
+  resetDelay: 100
 })
 </script>
 
@@ -117,19 +78,19 @@ onMounted(() => {
 
     <h2 ref="titleRef" class="hidden lg:flex flex-col text-8xl font-bold text-white leading-none mr-5 select-none">
       <motion.span 
-        class="hover:text-emerald-400 transition-colors duration-300"
+        class="cursor-pointer"
         :animate="letterStates['letter-0'] || {}"
-        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+        :transition="getTransition()"
       >D</motion.span>
       <motion.span 
-        class="hover:text-emerald-400 transition-colors duration-300"
+        class="cursor-pointer"
         :animate="letterStates['letter-1'] || {}"
-        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+        :transition="getTransition()"
       >E</motion.span>
       <motion.span 
-        class="hover:text-emerald-400 transition-colors duration-300"
+        class="cursor-pointer"
         :animate="letterStates['letter-2'] || {}"
-        :transition="{ type: 'spring', stiffness: 100, damping: 10 }"
+        :transition="getTransition()"
       >V</motion.span>
     </h2>
 
