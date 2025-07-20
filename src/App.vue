@@ -15,7 +15,7 @@ useHead({
     {
       name: "description",
       content:
-        "Florian Beaumont is a freelance frontend developer specializing in Vue.js 3 and TypeScript. Building modern web apps, giving tech talks, and sharing open-source resources.",
+      "Florian Beaumont is a freelance frontend developer specializing in Vue.js 3 and TypeScript. Building modern web apps, giving tech talks, and sharing open-source resources.",
     },
     {
       property: "og:site_name",
@@ -28,7 +28,7 @@ useHead({
     {
       property: "og:description",
       content:
-        "Florian Beaumont is a freelance frontend developer and educator focusing on Vue.js 3, TypeScript, and modern web performance.",
+      "Florian Beaumont is a freelance frontend developer and educator focusing on Vue.js 3, TypeScript, and modern web performance.",
     },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://florianbeaumont.dev/" },
@@ -44,7 +44,7 @@ useHead({
     {
       name: "twitter:description",
       content:
-        "Freelance Vue 3 developer. Projects, talks, open-source and technical content by Florian Beaumont.",
+      "Freelance Vue 3 developer. Projects, talks, open-source and technical content by Florian Beaumont.",
     },
     {
       name: "twitter:image",
@@ -92,14 +92,14 @@ const { getAnimation, getTransition } = useMotionConfig();
 
 onMounted(() => {
   hasMounted.value = true;
-  
+
   const handleMouseMove = (e: MouseEvent) => {
     mousePosition.value = {
       x: (e.clientX / window.innerWidth - 0.5) * 2,
       y: (e.clientY / window.innerHeight - 0.5) * 2,
     };
   };
-  
+
   document.addEventListener('mousemove', handleMouseMove);
 });
 
@@ -109,12 +109,9 @@ const transitionPage = computed(() => "page");
 
 <template>
   <div class="bg-black text-white min-h-screen relative overflow-hidden">
-    <!-- Background effects container -->
     <div class="fixed inset-0 pointer-events-none">
-      <!-- Subtle texture overlay -->
       <div class="absolute inset-0 opacity-30 bg-noise"></div>
-      
-      <!-- Animated light orbs with parallax -->
+
       <motion.div 
         class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl orb-emerald-1"
         :animate="getAnimation({
@@ -149,7 +146,27 @@ const transitionPage = computed(() => "page");
     <div class="p-4 min-h-(--screen-minus-nav)">
       <header class="flex justify-end">
         <a href="#main" class="skip-link">Skip to main content</a>
-        <nav class="pb-8 flex gap-4">
+        <nav class="flex gap-4">
+          <RouterLink
+            to="/"
+          >
+          <div class="hidden md:block sm:mb-0 sm:absolute sm:top-3 sm:left-4 md:left-8 lg:left-12">
+            <img
+              src="/images/medium-avatar.avif"
+              srcset="
+              /images/small-avatar.avif 320w,
+              /images/medium-avatar.avif 530w
+              "
+              sizes="40px"
+              width="40"
+              height="40"
+              alt="Florian Beaumont"
+              class="w-10 h-10 rounded-full object-cover border-2 border-gray-500/30 mx-auto sm:mx-0"
+              fetchpriority="high"
+            />
+          </div>
+          </RouterLink>
+
           <RouterLink
             class="nav-link group"
             to="/"
@@ -212,7 +229,7 @@ const transitionPage = computed(() => "page");
             :appear="transitionAppear"
           >
             <KeepAlive>
-              <component :is="Component" />
+              <component class="mt-12" :is="Component" />
             </KeepAlive>
           </transition>
         </router-view>
@@ -220,7 +237,7 @@ const transitionPage = computed(() => "page");
     </div>
     <footer
       aria-label="Footer – author credit"
-      class="relative bottom-4 mt-8 w-full text-center"
+      class="relative bottom-4 w-full text-center"
     >
       <p class="text-xs">
         <span aria-hidden="true" class="text-stone-300">
