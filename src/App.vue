@@ -161,7 +161,7 @@ const transitionPage = computed(() => "page");
               width="40"
               height="40"
               alt="Florian Beaumont"
-              class="w-10 h-10 rounded-full object-cover border-2 border-gray-500/30 mx-auto sm:mx-0"
+              class="w-10 h-10 grayscale rounded-full object-cover border-2 border-gray-500/30 mx-auto sm:mx-0"
               fetchpriority="high"
             />
           </div>

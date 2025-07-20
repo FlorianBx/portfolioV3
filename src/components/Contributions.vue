@@ -72,23 +72,23 @@ const totalContributions = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
+  <div class="hidden md:flex flex-col items-center">
     <div class="relative">
-      <h2 class="text-2xl text-gray-300 font-bold mb-4">
+      <h2 class="text-sm xl:text-2xl text-gray-300 font-bold mb-2 lg:mb-4">
         {{ totalContributions.toLocaleString() }} contributions in the last year
       </h2>
       <div class="overflow-x-auto pb-2" tabindex="0" aria-label="GitHub contributions graph" role="region">
-        <div class="flex gap-1 justify-center">
+        <div class="flex gap-0.5 xl:gap-1 min-w-max">
           <div
             v-for="(week, i) in weeks"
             :key="i"
-            class="flex flex-col gap-1"
+            class="flex flex-col gap-0.5 xl:gap-1"
           >
             <div
               v-for="(day, j) in week"
               :key="day.date + j"
               :title="day.date ? `${day.date}: ${day.count} contribution(s)` : ''"
-              class="w-4 h-4 rounded-sm border border-gray-800 hover:border-gray-400 transition-colors duration-100"
+              class="w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800 hover:border-gray-400 transition-colors duration-100"
               :style="{ background: getColor(day.level) }"
               tabindex="0"
             />
@@ -98,11 +98,11 @@ const totalContributions = computed(() => {
       <div class="flex items-center justify-center gap-1 mt-2 text-xs text-gray-400 relative">
         <div class="absolute right-0 flex items-center gap-1">
           <span>Less</span>
-          <span class="inline-block w-4 h-4 rounded-sm border border-gray-800" :style="{ background: getColor(0) }"></span>
-          <span class="inline-block w-4 h-4 rounded-sm border border-gray-800" :style="{ background: getColor(1) }"></span>
-          <span class="inline-block w-4 h-4 rounded-sm border border-gray-800" :style="{ background: getColor(2) }"></span>
-          <span class="inline-block w-4 h-4 rounded-sm border border-gray-800" :style="{ background: getColor(3) }"></span>
-          <span class="inline-block w-4 h-4 rounded-sm border border-gray-800" :style="{ background: getColor(4) }"></span>
+          <span class="inline-block w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800" :style="{ background: getColor(0) }"></span>
+          <span class="inline-block w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800" :style="{ background: getColor(1) }"></span>
+          <span class="inline-block w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800" :style="{ background: getColor(2) }"></span>
+          <span class="inline-block w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800" :style="{ background: getColor(3) }"></span>
+          <span class="inline-block w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-xs xl:rounded-sm border border-gray-800" :style="{ background: getColor(4) }"></span>
           <span>More</span>
         </div>
       </div>
