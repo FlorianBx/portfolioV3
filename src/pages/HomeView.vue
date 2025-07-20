@@ -103,7 +103,11 @@ const { letterStates, getTransition } = useLetterAnimation(titleRef, {
       </h2>
 
       <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2 sm:px-0">
-        Hi, I'm <bold>Florian</bold> 👋 - a frontend developer passionate about Vue.js and open source.
+        Hi, I'm <motion.span 
+          :animate="{ y: [0, -12, 0, -15, 0, -10, 0], scale: [1, 2.05, 1, 1.03, 3, 1.02, 1], rotate: [0, 10, -12, -360, 10, -3] }"
+          :transition="{ duration: 1.2, delay: 0.5, easing: [0.25, 0.46, 0.45, 0.94] }"
+          class="px-1 font-bold text-white inline-block"
+        >Florian</motion.span> 👋 - a frontend developer passionate about Vue.js and open source.
         I spend my time building fun stuff, exploring new technologies, and co-organizing
         Vue.js Paris meetups. Let's create something amazing together!
       </p>
