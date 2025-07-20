@@ -2,7 +2,8 @@
 
 A high-performance, statically generated portfolio and blog built with Vue 3, TypeScript, and modern web technologies. Optimized for Core Web Vitals and SEO.
 
-![Portfolio Screenshot](./portfolio-screenshot.png)
+<img width="1920" height="1080" alt="new" src="https://github.com/user-attachments/assets/a9bb38f2-9166-408c-a76a-e9e4509585e7" />
+
 
 ## 🚀 Tech Stack
 
@@ -54,7 +55,8 @@ This portfolio is optimized for Google's Core Web Vitals metrics:
 - **Compression** - Gzip/Brotli for reduced file sizes
 - **Lazy loading** - Deferred loading of non-critical resources
 
-![Core Web Vitals Screenshot](./core-web-vitals-screenshot.png)
+<img width="1243" height="937" alt="Screenshot 2025-07-20 at 8 12 00 PM" src="https://github.com/user-attachments/assets/7e5ffcf6-1a85-413e-bdb6-786c2a19c029" />
+
 
 ## 🎨 Features
 
