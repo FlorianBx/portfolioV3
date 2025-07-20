@@ -46,6 +46,9 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     color: rgba(255, 255, 255, 0.7);
     transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
   }
 
   .nav-link:hover {
@@ -57,6 +60,8 @@
     position: relative;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: translateZ(0);
+    will-change: filter;
+    contain: layout style paint;
   }
 
   .nav-link:hover .nav-icon-wrapper {
