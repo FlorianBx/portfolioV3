@@ -1,4 +1,4 @@
-# Modern Vue.js Portfolio
+# Portfolio 
 
 A high-performance, statically generated portfolio and blog built with Vue 3, TypeScript, and modern web technologies. Optimized for Core Web Vitals and SEO.
 
